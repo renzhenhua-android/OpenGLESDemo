@@ -35,7 +35,7 @@ BaseShaderToySimpleSample::~BaseShaderToySimpleSample() {
     }
 }
 
-void BaseShaderToySimpleSample::Create() {
+void BaseShaderToySimpleSample::Init() {
     // 顶点着色器
     VERTEX_SHADER = GLUtils::openTextFile(
             "vertex/vertex_shader_beating_heart.glsl");
@@ -64,8 +64,7 @@ void BaseShaderToySimpleSample::Create() {
             break;
     }
 
-    LOGD("BaseShaderToySimpleSample::Create() mRenderSampleType =%d, mFragmentShaderPath = %s",
-         mRenderSampleType, mFragmentShaderPath)
+    LOGD("BaseShaderToySimpleSample::Create() mRenderSampleType =%d, mFragmentShaderPath = %s", mRenderSampleType, mFragmentShaderPath)
 
     if (mFragmentShaderPath == GL_NONE) {
         LOGD("BaseShaderToySimpleSample::Create() mFragmentShaderPath == GL_NONE 直接return")
@@ -158,7 +157,7 @@ void BaseShaderToySimpleSample::Create() {
     glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
 }
 
-void BaseShaderToySimpleSample::Draw() {
+void BaseShaderToySimpleSample::Draw(int width_, int height_) {
     LOGD("BaseShaderToySimpleSample::Draw()")
 
     if (m_ProgramObj == GL_NONE) {
@@ -231,7 +230,7 @@ void BaseShaderToySimpleSample::Draw() {
 }
 
 void BaseShaderToySimpleSample::LoadMultiImageWithIndex(int index, NativeImage *pImage) {
-    GLBaseSample::LoadMultiImageWithIndex(index, pImage);
+    GLSampleBase::LoadMultiImageWithIndex(index, pImage);
     LOGD("BaseShaderToySimpleSample::LoadImage index=%d, pImage = %p", index, pImage->ppPlane[0])
     if (pImage) {
         m_RenderImages[index].width = pImage->width;
@@ -242,8 +241,8 @@ void BaseShaderToySimpleSample::LoadMultiImageWithIndex(int index, NativeImage *
 }
 
 
-void BaseShaderToySimpleSample::Shutdown() {
-    GLBaseSample::Shutdown();
+void BaseShaderToySimpleSample::Destroy() {
+    GLSampleBase::Destroy();
 
     glDeleteBuffers(3, m_VboIds);
     glDeleteVertexArrays(1, &m_VaoId);
@@ -253,8 +252,7 @@ void BaseShaderToySimpleSample::Shutdown() {
 void
 BaseShaderToySimpleSample::UpdateMVPMatrix(glm::mat4 &mvpMatrix, int angleX, int angleY,
                                            float ratio) const {
-    LOGD("BaseShaderToySimpleSample::UpdateMVPMatrix angleX = %d, angleY = %d, ratio = %f", angleX,
-         angleY, ratio)
+    LOGD("BaseShaderToySimpleSample::UpdateMVPMatrix angleX = %d, angleY = %d, ratio = %f", angleX, angleY, ratio)
     angleX = angleX % 360;
     angleY = angleY % 360;
 

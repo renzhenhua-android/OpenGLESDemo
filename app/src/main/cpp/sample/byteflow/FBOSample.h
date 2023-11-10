@@ -5,7 +5,7 @@
 #ifndef OPENGLESDEMO_FBOSAMPLE_H
 #define OPENGLESDEMO_FBOSAMPLE_H
 
-#include <GLBaseSample.h>
+#include <GLSampleBase.h>
 
 #define FBO_VERTEX_POS_INDX  0
 #define FBO_TEXTURE_POS_INDX 1
@@ -14,7 +14,7 @@
 #define FBO_TEXTURE_POS_SIZE 2
 
 
-class FBOSample :public GLBaseSample{
+class FBOSample :public GLSampleBase{
 
 public:
     FBOSample();
@@ -23,11 +23,11 @@ public:
 
     virtual void LoadImage(NativeImage *pImage);
 
-    virtual void Create();
+    virtual void Init();
 
-    virtual void Draw();
+    virtual void Draw(int width_, int height_);
 
-    virtual void Shutdown();
+    virtual void Destroy();
 
 private:
     GLuint m_ImageTextureId;

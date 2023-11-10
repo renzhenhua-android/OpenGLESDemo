@@ -58,7 +58,7 @@ void FBOSample::LoadImage(NativeImage *pImage) {
     }
 }
 
-void FBOSample::Create() {
+void FBOSample::Init() {
      // 顶点着色器
     VERTEX_SHADER = GLUtils::openTextFile(
             "vertex/vertex_shader_texture_map.glsl");
@@ -162,7 +162,7 @@ void FBOSample::Create() {
 
 }
 
-void FBOSample::Draw() {
+void FBOSample::Draw(int width_, int height_) {
     FUN_BEGIN_TIME(" FBOSample::Draw()")
         // ====================离屏渲染====================
         glPixelStorei(GL_UNPACK_ALIGNMENT,1);
@@ -213,8 +213,8 @@ void FBOSample::Draw() {
     FUN_END_TIME(" FBOSample::Draw()")
 }
 
-void FBOSample::Shutdown() {
-    GLBaseSample::Shutdown();
+void FBOSample::Destroy() {
+    GLSampleBase::Destroy();
 
     if (m_FboProgramObj)
     {

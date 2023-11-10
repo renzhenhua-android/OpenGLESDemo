@@ -5,7 +5,7 @@
 #include <cstdlib>
 #include "TerrainRender.h"
 
-void TerrainRender::Create() {
+void TerrainRender::Init() {
     GLUtils::printGLInfo();
 
     GLfloat *positions;
@@ -90,7 +90,7 @@ void TerrainRender::initMVP() {
     esMatrixMultiply(&mvpMatrix, &modelview, &perspective);
 }
 
-void TerrainRender::Draw() {
+void TerrainRender::Draw(int width_, int height_) {
     initMVP();
 
     // Clear the color buffer
@@ -124,8 +124,8 @@ void TerrainRender::Draw() {
     glDrawElements(GL_TRIANGLES, numIndices, GL_UNSIGNED_INT, nullptr);
 }
 
-void TerrainRender::Shutdown() {
-    GLBaseSample::Shutdown();
+void TerrainRender::Destroy() {
+    GLSampleBase::Destroy();
     // Delete texture object
     glDeleteBuffers(1, &positionVBO);
     glDeleteBuffers(1, &indicesIBO);

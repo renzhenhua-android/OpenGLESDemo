@@ -3,22 +3,22 @@
 //
 #pragma once
 
-#include <GLBaseSample.h>
+#include <GLSampleBase.h>
 
 #define POSITION_LOC    0
 #define COLOR_LOC       1
 
-class Shadows : public GLBaseSample {
+class Shadows : public GLSampleBase {
 public:
     Shadows() = default;
 
     virtual ~Shadows() = default;
 
-    virtual void Create();
+    virtual void Init();
 
-    virtual void Draw();
+    virtual void Draw(int width_, int height_);
 
-    virtual void Shutdown();
+    virtual void Destroy();
 
 private:
     // Handle to a program object

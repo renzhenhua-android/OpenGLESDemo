@@ -5,19 +5,19 @@
 #ifndef OPENGLESDEMO_TEXTUREWRAP_H
 #define OPENGLESDEMO_TEXTUREWRAP_H
 
-#include <GLBaseSample.h>
+#include <GLSampleBase.h>
 
-class TextureWrap : public GLBaseSample {
+class TextureWrap : public GLSampleBase {
 public:
     TextureWrap() = default;
 
     virtual ~TextureWrap() = default;
 
-    virtual void Create();
+    virtual void Init();
 
-    virtual void Draw();
+    virtual void Draw(int width_, int height_);
 
-    virtual void Shutdown();
+    virtual void Destroy();
 
 private:
     // Sampler location

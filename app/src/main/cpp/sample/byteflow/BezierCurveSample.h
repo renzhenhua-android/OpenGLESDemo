@@ -3,21 +3,21 @@
 
 
 #include <glm/gtc/matrix_transform.hpp>
-#include <GLBaseSample.h>
+#include <GLSampleBase.h>
 //#include "CoordSystemSample.h"
 
-class BezierCurveSample : public GLBaseSample
+class BezierCurveSample : public GLSampleBase
 {
 public:
 	BezierCurveSample();
 
 	virtual ~BezierCurveSample();
 
-	virtual void Create();
+	virtual void Init();
 
-	virtual void Draw();
+	virtual void Draw(int width_, int height_);
 
-	virtual void Shutdown();
+	virtual void Destroy();
 
 	virtual void UpdateTransformMatrix(float rotateX, float rotateY, float scaleX, float scaleY);
 

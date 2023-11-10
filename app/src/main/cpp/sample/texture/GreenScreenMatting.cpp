@@ -59,7 +59,7 @@ GreenScreenMatting::~GreenScreenMatting() {
 }
 
 
-void GreenScreenMatting::Create() {
+void GreenScreenMatting::Init() {
     // Create RGBA texture
     glGenTextures(1, &m_TextureId);
     glBindTexture(GL_TEXTURE_2D, m_TextureId);
@@ -134,7 +134,7 @@ void GreenScreenMatting::Create() {
     glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
 }
 
-void GreenScreenMatting::Draw() {
+void GreenScreenMatting::Draw(int width_, int height_) {
 
     if (m_ProgramObj == GL_NONE || m_TextureId == GL_NONE) return;
 
@@ -159,8 +159,8 @@ void GreenScreenMatting::Draw() {
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_SHORT, nullptr);
 }
 
-void GreenScreenMatting::Shutdown() {
-    GLBaseSample::Shutdown();
+void GreenScreenMatting::Destroy() {
+    GLSampleBase::Destroy();
     glDeleteBuffers(3, m_VboIds);
     glDeleteVertexArrays(1, &m_VaoId);
     glDeleteTextures(1, &m_TextureId);
@@ -191,8 +191,7 @@ GreenScreenMatting::UpdateTransformMatrix(float rotateX, float rotateY, float sc
  * */
 void GreenScreenMatting::UpdateMVPMatrix(glm::mat4 &mvpMatrix, int angleX, int angleY,
                                         float ratio) const {
-    LOGD("GreenScreenMatting::UpdateMVPMatrix angleX = %d, angleY = %d, ratio = %f", angleX, angleY,
-         ratio)
+    LOGD("GreenScreenMatting::UpdateMVPMatrix angleX = %d, angleY = %d, ratio = %f", angleX, angleY, ratio)
     angleX = angleX % 360;
     angleY = angleY % 360;
 

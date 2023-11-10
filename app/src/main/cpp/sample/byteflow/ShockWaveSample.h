@@ -7,21 +7,21 @@
 
 
 #include <glm/gtc/matrix_transform.hpp>
-#include <GLBaseSample.h>
+#include <GLSampleBase.h>
 
 using namespace glm;
 
-class ShockWaveSample : public GLBaseSample {
+class ShockWaveSample : public GLSampleBase {
 public:
     ShockWaveSample();
 
     virtual ~ShockWaveSample();
 
-    virtual void Create();
+    virtual void Init();
 
-    virtual void Draw();
+    virtual void Draw(int width_, int height_);
 
-    virtual void Shutdown();
+    virtual void Destroy();
 
     virtual void LoadImage(NativeImage *pImage);
 

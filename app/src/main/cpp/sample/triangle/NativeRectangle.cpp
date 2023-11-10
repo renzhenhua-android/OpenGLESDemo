@@ -14,7 +14,7 @@ static GLushort indices[] = {  // note that we start from 0!
         1, 2, 3   // second Triangle
 };
 
-void NativeRectangle::Create() {
+void NativeRectangle::Init() {
     GLUtils::printGLInfo();
 
     // Main Program
@@ -66,7 +66,7 @@ void NativeRectangle::Create() {
     glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
 }
 
-void NativeRectangle::Draw() {
+void NativeRectangle::Draw(int width_, int height_) {
     glClear(GL_COLOR_BUFFER_BIT);
 
     glUseProgram(m_ProgramObj);
@@ -80,8 +80,8 @@ void NativeRectangle::Draw() {
     glBindVertexArray(0);
 }
 
-void NativeRectangle::Shutdown() {
-    GLBaseSample::Shutdown();
+void NativeRectangle::Destroy() {
+    GLSampleBase::Destroy();
 
     glDeleteBuffers(2, &vboIds[0]);
     glDeleteVertexArrays(1, &vaoId);

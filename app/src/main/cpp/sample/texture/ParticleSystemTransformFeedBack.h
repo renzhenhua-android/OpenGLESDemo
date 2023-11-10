@@ -4,7 +4,7 @@
 
 #pragma once
 #include <cstdlib>
-#include <GLBaseSample.h>
+#include <GLSampleBase.h>
 #include "Noise3D.h"
 
 #define NUM_PARTICLES   200
@@ -18,17 +18,17 @@
 #define ATTRIBUTE_LIFETIME      4
 
 
-class ParticleSystemTransformFeedBack : public GLBaseSample{
+class ParticleSystemTransformFeedBack : public GLSampleBase{
 public:
     ParticleSystemTransformFeedBack() = default;
 
     virtual ~ParticleSystemTransformFeedBack() = default;
 
-    virtual void Create();
+    virtual void Init();
 
-    virtual void Draw();
+    virtual void Draw(int width_, int height_);
 
-    virtual void Shutdown();
+    virtual void Destroy();
 
 private:
     // 定义粒子的顶点结构

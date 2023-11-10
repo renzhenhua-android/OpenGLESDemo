@@ -6,19 +6,19 @@
 #define OPENGLESDEMO_MULTILIGHTINGSSAMPLE_H
 
 #include <glm/gtc/matrix_transform.hpp>
-#include <GLBaseSample.h>
+#include <GLSampleBase.h>
 
-class MultiLightingsSample : public GLBaseSample {
+class MultiLightingsSample : public GLSampleBase {
 public:
     MultiLightingsSample();
 
     virtual ~MultiLightingsSample();
 
-    virtual void Create();
+    virtual void Init();
 
-    virtual void Draw();
+    virtual void Draw(int width_, int height_);
 
-    virtual void Shutdown();
+    virtual void Destroy();
 
     virtual void LoadImage(NativeImage *pImage);
 

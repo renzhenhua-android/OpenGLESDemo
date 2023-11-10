@@ -21,7 +21,7 @@ Model3DSample::Model3DSample() {
     m_pShader = nullptr;
 }
 
-void Model3DSample::Create() {
+void Model3DSample::Init() {
     // "/data/data/com.oyp.openglesdemo/cache"
     std::string path(DEFAULT_OGL_ASSETS_DIR);
 
@@ -44,7 +44,7 @@ void Model3DSample::Create() {
     glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 }
 
-void Model3DSample::Draw() {
+void Model3DSample::Draw(int width_, int height_) {
     if (m_pModel == nullptr || m_pShader == nullptr) return;
     LOGD("Model3DSample::Draw()")
 
@@ -68,9 +68,9 @@ void Model3DSample::Draw() {
     m_pModel->Draw((*m_pShader));
 }
 
-void Model3DSample::Shutdown() {
+void Model3DSample::Destroy() {
     LOGD("Model3DSample::Destroy")
-    GLBaseSample::Shutdown();
+    GLSampleBase::Destroy();
     // 销毁对象
     if (m_pModel != nullptr) {
         m_pModel->Destroy();
@@ -87,7 +87,7 @@ void Model3DSample::Shutdown() {
 
 void
 Model3DSample::UpdateTransformMatrix(float rotateX, float rotateY, float scaleX, float scaleY) {
-    GLBaseSample::UpdateTransformMatrix(rotateX, rotateY, scaleX, scaleY);
+    GLSampleBase::UpdateTransformMatrix(rotateX, rotateY, scaleX, scaleY);
     m_AngleX = static_cast<int>(rotateX);
     m_AngleY = static_cast<int>(rotateY);
     m_ScaleX = scaleX;

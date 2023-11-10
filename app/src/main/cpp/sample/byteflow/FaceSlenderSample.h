@@ -7,19 +7,19 @@
 
 
 #include <glm/gtc/matrix_transform.hpp>
-#include <GLBaseSample.h>
+#include <GLSampleBase.h>
 
-class FaceSlenderSample : public GLBaseSample {
+class FaceSlenderSample : public GLSampleBase {
 public:
     FaceSlenderSample();
 
     virtual ~FaceSlenderSample();
 
-    virtual void Create();
+    virtual void Init();
 
-    virtual void Draw();
+    virtual void Draw(int width_, int height_);
 
-    virtual void Shutdown();
+    virtual void Destroy();
 
     virtual void LoadImage(NativeImage *pImage);
 

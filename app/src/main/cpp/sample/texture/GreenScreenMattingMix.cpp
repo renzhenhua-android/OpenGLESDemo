@@ -53,7 +53,7 @@ GreenScreenMattingMix::~GreenScreenMattingMix() {
 }
 
 
-void GreenScreenMattingMix::Create() {
+void GreenScreenMattingMix::Init() {
     //Create RGBA texture
     glGenTextures(GREEN_SCREEN_RENDER_IMG_NUM, m_TextureIds);
     for (int i = 0; i < GREEN_SCREEN_RENDER_IMG_NUM; ++i) {
@@ -131,7 +131,7 @@ void GreenScreenMattingMix::Create() {
     glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
 }
 
-void GreenScreenMattingMix::Draw() {
+void GreenScreenMattingMix::Draw(int width_, int height_) {
 
     if (m_ProgramObj == GL_NONE) return;
 
@@ -160,8 +160,8 @@ void GreenScreenMattingMix::Draw() {
     glBindVertexArray(0);
 }
 
-void GreenScreenMattingMix::Shutdown() {
-    GLBaseSample::Shutdown();
+void GreenScreenMattingMix::Destroy() {
+    GLSampleBase::Destroy();
     glDeleteBuffers(3, m_VboIds);
     glDeleteVertexArrays(1, &m_VaoId);
     glDeleteTextures(3, m_TextureIds);
@@ -182,8 +182,7 @@ GreenScreenMattingMix::UpdateTransformMatrix(float rotateX, float rotateY, float
  * */
 void GreenScreenMattingMix::UpdateMVPMatrix(glm::mat4 &mvpMatrix, int angleX, int angleY,
                                             float ratio) const {
-    LOGD("GreenScreenMattingMix::UpdateMVPMatrix angleX = %d, angleY = %d, ratio = %f", angleX, angleY,
-         ratio)
+    LOGD("GreenScreenMattingMix::UpdateMVPMatrix angleX = %d, angleY = %d, ratio = %f", angleX, angleY,ratio)
     angleX = angleX % 360;
     angleY = angleY % 360;
 

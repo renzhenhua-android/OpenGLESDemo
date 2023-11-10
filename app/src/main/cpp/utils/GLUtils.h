@@ -15,7 +15,7 @@
 #include <esShapes.h>
 #include <esTransform.h>
 
-#include <GLBaseSample.h>
+#include <GLSampleBase.h>
 
 #include <glm/detail/type_mat4x4.hpp>
 

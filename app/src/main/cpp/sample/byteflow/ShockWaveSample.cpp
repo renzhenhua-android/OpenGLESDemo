@@ -45,7 +45,7 @@ ShockWaveSample::~ShockWaveSample() {
     NativeImageUtil::FreeNativeImage(&m_RenderImage);
 }
 
-void ShockWaveSample::Create() {
+void ShockWaveSample::Init() {
 
     // 顶点着色器
     VERTEX_SHADER = GLUtils::openTextFile(
@@ -110,7 +110,7 @@ void ShockWaveSample::Create() {
     glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 }
 
-void ShockWaveSample::Draw() {
+void ShockWaveSample::Draw(int width_, int height_) {
     LOGD("ShockWaveSample::Draw()")
     if(m_ProgramObj == GL_NONE || m_TextureId == GL_NONE) return;
 
@@ -144,8 +144,8 @@ void ShockWaveSample::Draw() {
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_SHORT, nullptr);
 }
 
-void ShockWaveSample::Shutdown() {
-    GLBaseSample::Shutdown();
+void ShockWaveSample::Destroy() {
+    GLSampleBase::Destroy();
 
     glDeleteProgram(m_ProgramObj);
     glDeleteBuffers(3, m_VboIds);

@@ -45,7 +45,7 @@ PortraitStayColorExample::~PortraitStayColorExample() {
     NativeImageUtil::FreeNativeImage(&m_MappingImage);
 }
 
-void PortraitStayColorExample::Create() {
+void PortraitStayColorExample::Init() {
     // 顶点着色器
     VERTEX_SHADER = GLUtils::openTextFile(
             "vertex/vertex_shader_coord_system.glsl");
@@ -162,7 +162,7 @@ void PortraitStayColorExample::Create() {
     glBindTexture(GL_TEXTURE_2D, GL_NONE);
 }
 
-void PortraitStayColorExample::Draw() {
+void PortraitStayColorExample::Draw(int width_, int height_) {
     LOGD("PortraitStayColorExample::Draw()")
 
     if (m_ProgramObj == GL_NONE || m_TextureId == GL_NONE) return;
@@ -200,8 +200,8 @@ void PortraitStayColorExample::Draw() {
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_SHORT, nullptr);
 }
 
-void PortraitStayColorExample::Shutdown() {
-    GLBaseSample::Shutdown();
+void PortraitStayColorExample::Destroy() {
+    GLSampleBase::Destroy();
 
     glDeleteBuffers(3, m_VboIds);
     glDeleteVertexArrays(1, &m_VaoId);
@@ -254,8 +254,7 @@ void PortraitStayColorExample::UpdateTransformMatrix(float rotateX, float rotate
 
 void PortraitStayColorExample::UpdateMVPMatrix(glm::mat4 &mvpMatrix, int angleX, int angleY,
                                                float ratio) const {
-    LOGD("PortraitStayColorExample::UpdateMVPMatrix angleX = %d, angleY = %d, ratio = %f",
-         angleX, angleY, ratio)
+    LOGD("PortraitStayColorExample::UpdateMVPMatrix angleX = %d, angleY = %d, ratio = %f", angleX, angleY, ratio)
 
     angleX = angleX % 360;
     angleY = angleY % 360;

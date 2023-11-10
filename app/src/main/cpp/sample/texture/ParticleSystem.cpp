@@ -6,7 +6,7 @@
 #include "ParticleSystem.h"
 
 
-void ParticleSystem::Create() {
+void ParticleSystem::Init() {
     GLUtils::printGLInfo();
 
     // 顶点着色器
@@ -63,7 +63,7 @@ void ParticleSystem::Create() {
     mTextureId = GLUtils::loadTexture(  "texture/smoke.png" );
 }
 
-void ParticleSystem::Draw() {
+void ParticleSystem::Draw(int width_, int height_) {
     // 每次更新一下
     update(getDeltaTime());
 
@@ -112,8 +112,8 @@ void ParticleSystem::Draw() {
     
 }
 
-void ParticleSystem::Shutdown() {
-    GLBaseSample::Shutdown();
+void ParticleSystem::Destroy() {
+    GLSampleBase::Destroy();
     // Delete texture object
     glDeleteTextures ( 1, &mTextureId );
 }

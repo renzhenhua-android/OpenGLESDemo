@@ -45,7 +45,7 @@ static GLfloat vertices[3 * (VERTEX_POS_SIZE + VERTEX_COLOR_SIZE)] =
 // Index buffer data
 static GLushort indices[3] = {0, 1, 2};
 
-void NativeTriangleVAO::Create() {
+void NativeTriangleVAO::Init() {
     GLUtils::printGLInfo();
 
     // 顶点着色器
@@ -57,7 +57,7 @@ void NativeTriangleVAO::Create() {
     m_ProgramObj = GLUtils::createProgram(&VERTEX_SHADER, &FRAGMENT_SHADER);
 
     if (!m_ProgramObj) {
-        LOGD("Could not Create program")
+         LOGD("Could not Create program")
         return;
     }
 
@@ -107,7 +107,7 @@ void NativeTriangleVAO::Create() {
     glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
 }
 
-void NativeTriangleVAO::Draw() {
+void NativeTriangleVAO::Draw(int width_, int height_) {
     // Clear the color buffer
     // 清除屏幕
     // 在OpenGL ES中，绘图中涉及多种缓冲区类型：颜色、深度、模板。
@@ -132,8 +132,8 @@ void NativeTriangleVAO::Draw() {
     glBindVertexArray(0);
 }
 
-void NativeTriangleVAO::Shutdown() {
-    GLBaseSample::Shutdown();
+void NativeTriangleVAO::Destroy() {
+    GLSampleBase::Destroy();
 
     glDeleteBuffers(2, &vboIds[0]);
     glDeleteVertexArrays(1, &vaoId);

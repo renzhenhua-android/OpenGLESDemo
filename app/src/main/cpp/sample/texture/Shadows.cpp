@@ -10,7 +10,7 @@
 #include <cstdlib>
 #include "Shadows.h"
 
-void Shadows::Create() {
+void Shadows::Init() {
     GLUtils::printGLInfo();
 
     GLfloat *positions;
@@ -258,7 +258,7 @@ int Shadows::initShadowMap() {
     return GL_TRUE;
 }
 
-void Shadows::Draw() {
+void Shadows::Draw(int width_, int height_) {
 
     GLint defaultFramebuffer = 0;
 
@@ -359,8 +359,8 @@ void Shadows::drawScene(GLint mvpLoc, GLint mvpLightLoc) {
     glDrawElements(GL_TRIANGLES, cubeNumIndices, GL_UNSIGNED_INT, (const void *) nullptr);
 }
 
-void Shadows::Shutdown() {
-    GLBaseSample::Shutdown();
+void Shadows::Destroy() {
+    GLSampleBase::Destroy();
     glDeleteBuffers(1, &groundPositionVBO);
     glDeleteBuffers(1, &groundIndicesIBO);
 

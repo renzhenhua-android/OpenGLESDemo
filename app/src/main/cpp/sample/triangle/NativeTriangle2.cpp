@@ -29,9 +29,9 @@ static GLfloat vVertices[] = {
 };
 
 // 设置顶点的颜色值  这里设置成蓝色
-static GLfloat color[4] = {0.0f, 0.0f, 1.0f, 1.0f};
+static GLfloat color[4] = {0.5f, 0.0f, 1.0f, 1.0f};
 
-void NativeTriangle2::Create() {
+void NativeTriangle2::Init() {
     GLUtils::printGLInfo();
 
     // 顶点着色器
@@ -50,7 +50,7 @@ void NativeTriangle2::Create() {
 }
 
 
-void NativeTriangle2::Draw() {
+void NativeTriangle2::Draw(int width_, int height_) {
     // Clear the color buffer
     // 清除屏幕
     // 在OpenGL ES中，绘图中涉及多种缓冲区类型：颜色、深度、模板。
@@ -121,6 +121,6 @@ void NativeTriangle2::Draw() {
     glDisableVertexAttribArray(0);
 }
 
-void NativeTriangle2::Shutdown() {
-    GLBaseSample::Shutdown();
+void NativeTriangle2::Destroy() {
+    GLSampleBase::Destroy();
 }

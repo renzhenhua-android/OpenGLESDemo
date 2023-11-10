@@ -66,7 +66,7 @@ BigEyesSample::~BigEyesSample() {
     NativeImageUtil::FreeNativeImage(&m_RenderImage);
 }
 
-void BigEyesSample::Create() {
+void BigEyesSample::Init() {
     // 顶点着色器
     VERTEX_SHADER = GLUtils::openTextFile(
             "vertex/vertex_shader_coord_system.glsl");
@@ -135,7 +135,7 @@ void BigEyesSample::Create() {
     glClearColor(0.1, 0.1, 0.1, 0.1);
 }
 
-void BigEyesSample::Draw() {
+void BigEyesSample::Draw(int width_, int height_) {
     if (m_ProgramObj == GL_NONE) {
         LOGE("BigEyesSample::Draw() m_ProgramObj == GL_NONE return")
         return;
@@ -187,8 +187,8 @@ void BigEyesSample::Draw() {
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_SHORT, nullptr);
 }
 
-void BigEyesSample::Shutdown() {
-    GLBaseSample::Shutdown();
+void BigEyesSample::Destroy() {
+    GLSampleBase::Destroy();
     glDeleteProgram(m_ProgramObj);
     glDeleteBuffers(3, m_VboIds);
     glDeleteVertexArrays(1, &m_VaoId);
@@ -208,7 +208,7 @@ void BigEyesSample::LoadImage(NativeImage *pImage) {
 
 void
 BigEyesSample::UpdateTransformMatrix(float rotateX, float rotateY, float scaleX, float scaleY) {
-    GLBaseSample::UpdateTransformMatrix(rotateX, rotateY, scaleX, scaleY);
+    GLSampleBase::UpdateTransformMatrix(rotateX, rotateY, scaleX, scaleY);
     m_AngleX = static_cast<int>(rotateX);
     m_AngleY = static_cast<int>(rotateY);
     m_ScaleX = scaleX;
@@ -217,8 +217,7 @@ BigEyesSample::UpdateTransformMatrix(float rotateX, float rotateY, float scaleX,
 
 void
 BigEyesSample::UpdateMVPMatrix(glm::mat4 &mvpMatrix, int angleX, int angleY, float ratio) const {
-    LOGD("BigEyesSample::UpdateMVPMatrix angleX = %d, angleY = %d, ratio = %f", angleX, angleY,
-         ratio)
+    LOGD("BigEyesSample::UpdateMVPMatrix angleX = %d, angleY = %d, ratio = %f", angleX, angleY, ratio)
     angleX = angleX % 360;
     angleY = angleY % 360;
 

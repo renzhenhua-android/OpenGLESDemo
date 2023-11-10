@@ -8,11 +8,11 @@
 #include <vector>
 #include <map>
 #include <glm/gtc/matrix_transform.hpp>
-#include <GLBaseSample.h>
+#include <GLSampleBase.h>
 
 #define STICKER_RENDER_IMG_NUM 4
 
-class StickerSample : public GLBaseSample {
+class StickerSample : public GLSampleBase {
 
 public:
     StickerSample();
@@ -23,11 +23,11 @@ public:
 
     virtual void LoadMultiImageWithIndex(int index, NativeImage *pImage);
 
-    virtual void Create();
+    virtual void Init();
 
-    virtual void Draw();
+    virtual void Draw(int width_, int height_);
 
-    virtual void Shutdown();
+    virtual void Destroy();
 
     virtual void UpdateTransformMatrix(float rotateX, float rotateY, float scaleX, float scaleY);
 

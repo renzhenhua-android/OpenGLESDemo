@@ -5,22 +5,22 @@
 #ifndef OPENGLESDEMO_GREENSCREENMATTINGMIX_H
 #define OPENGLESDEMO_GREENSCREENMATTINGMIX_H
 
-#include <GLBaseSample.h>
+#include <GLSampleBase.h>
 
 #define GREEN_SCREEN_RENDER_IMG_NUM 2
 
-class GreenScreenMattingMix : public GLBaseSample {
+class GreenScreenMattingMix : public GLSampleBase {
 
 public:
     GreenScreenMattingMix();
 
     virtual ~GreenScreenMattingMix();
 
-    virtual void Create();
+    virtual void Init();
 
-    virtual void Draw();
+    virtual void Draw(int width_, int height_);
 
-    virtual void Shutdown();
+    virtual void Destroy();
 
     virtual void LoadMultiImageWithIndex(int index, NativeImage *pImage);
 

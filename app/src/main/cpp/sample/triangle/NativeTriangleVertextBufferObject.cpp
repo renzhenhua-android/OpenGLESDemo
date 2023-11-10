@@ -18,7 +18,7 @@ static GLfloat vertices[3 * (VERTEX_POS_SIZE + VERTEX_COLOR_SIZE)] =
 // Index buffer data
 static GLushort indices[3] = {0, 1, 2};
 
-void NativeTriangleVBO::Create() {
+void NativeTriangleVBO::Init() {
     GLUtils::printGLInfo();
     // 顶点着色器
     VERTEX_SHADER = GLUtils::openTextFile(
@@ -42,7 +42,7 @@ void NativeTriangleVBO::Create() {
     glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
 }
 
-void NativeTriangleVBO::Draw() {
+void NativeTriangleVBO::Draw(int width_, int height_) {
     glClear(GL_COLOR_BUFFER_BIT);
 
     glUseProgram(m_ProgramObj);
@@ -164,8 +164,8 @@ void NativeTriangleVBO::DrawPrimitiveWithVBOs(GLint numVertices, GLfloat *vtxBuf
     FUN_END_TIME("NativeTriangleVBO::DrawPrimitiveWithVBOs")
 }
 
-void NativeTriangleVBO::Shutdown() {
-    GLBaseSample::Shutdown();
+void NativeTriangleVBO::Destroy() {
+    GLSampleBase::Destroy();
 
     glDeleteBuffers(2, &vboIds[0]);
 }

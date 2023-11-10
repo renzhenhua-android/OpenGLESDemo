@@ -1,6 +1,6 @@
 #include "Native6Lesson.h"
 
-void Native6Lesson::Create() {
+void Native6Lesson::Init() {
     // Use culling to remove back face.
     glEnable(GL_CULL_FACE);
 
@@ -92,7 +92,7 @@ void Native6Lesson::Change(int width, int height) {
     mProjectionMatrix = Matrix::newFrustum(left, right, bottom, top, near, far);
 }
 
-void Native6Lesson::Draw() {
+void Native6Lesson::Draw(int width_, int height_) {
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -308,8 +308,8 @@ void Native6Lesson::SetDelta(float x, float y) {
     mDeltaY += y;
 }
 
-void Native6Lesson::Shutdown() {
-    GLBaseSample::Shutdown();
+void Native6Lesson::Destroy() {
+    GLSampleBase::Destroy();
     delete mModelMatrix;
     mModelMatrix = nullptr;
 

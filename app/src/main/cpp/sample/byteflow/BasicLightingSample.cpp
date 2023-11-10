@@ -32,7 +32,7 @@ BasicLightingSample::~BasicLightingSample() {
     NativeImageUtil::FreeNativeImage(&m_RenderImage);
 }
 
-void BasicLightingSample::Create() {
+void BasicLightingSample::Init() {
     //Create RGBA texture
     glGenTextures(1, &m_TextureId);
     glBindTexture(GL_TEXTURE_2D, m_TextureId);
@@ -104,7 +104,7 @@ void BasicLightingSample::LoadImage(NativeImage *pImage) {
     }
 }
 
-void BasicLightingSample::Draw() {
+void BasicLightingSample::Draw(int width_, int height_) {
     LOGD("BasicLightingSample::Draw()")
 
     if (m_ProgramObj == GL_NONE || m_TextureId == GL_NONE) {
@@ -151,8 +151,8 @@ void BasicLightingSample::Draw() {
     GO_CHECK_GL_ERROR()
 }
 
-void BasicLightingSample::Shutdown() {
-    GLBaseSample::Shutdown();
+void BasicLightingSample::Destroy() {
+    GLSampleBase::Destroy();
     glDeleteBuffers(1, m_VboIds);
     glDeleteVertexArrays(1, &m_VaoId);
     glDeleteTextures(1, &m_TextureId);
@@ -164,8 +164,7 @@ void BasicLightingSample::Shutdown() {
  * @param ratio 宽高比
  * */
 void BasicLightingSample::UpdateMVPMatrix(glm::mat4 &mvpMatrix, int angleX, int angleY, float ratio) {
-    LOGD("BasicLightingSample::UpdateMVPMatrix angleX = %d, angleY = %d, ratio = %f", angleX,
-         angleY, ratio)
+    LOGD("BasicLightingSample::UpdateMVPMatrix angleX = %d, angleY = %d, ratio = %f", angleX, angleY, ratio)
     angleX = angleX % 360;
     angleY = angleY % 360;
 
@@ -201,7 +200,7 @@ void BasicLightingSample::UpdateMVPMatrix(glm::mat4 &mvpMatrix, int angleX, int 
 
 void BasicLightingSample::UpdateTransformMatrix(float rotateX, float rotateY, float scaleX,
                                                 float scaleY) {
-    GLBaseSample::UpdateTransformMatrix(rotateX, rotateY, scaleX, scaleY);
+    GLSampleBase::UpdateTransformMatrix(rotateX, rotateY, scaleX, scaleY);
     m_AngleX = static_cast<int>(rotateX);
     m_AngleY = static_cast<int>(rotateY);
     m_ScaleX = scaleX;

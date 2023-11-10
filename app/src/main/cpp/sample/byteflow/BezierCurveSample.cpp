@@ -34,7 +34,7 @@ BezierCurveSample::~BezierCurveSample() {
     NativeImageUtil::FreeNativeImage(&m_RenderImage);
 }
 
-void BezierCurveSample::Create() {
+void BezierCurveSample::Init() {
     // 顶点着色器
     VERTEX_SHADER = GLUtils::openTextFile(
             "vertex/vertex_shader_bezier_curve.glsl");
@@ -96,7 +96,7 @@ void BezierCurveSample::Create() {
 }
 
 
-void BezierCurveSample::Draw() {
+void BezierCurveSample::Draw(int width_, int height_) {
     LOGD("BezierCurveSample::Draw()")
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -241,8 +241,8 @@ void BezierCurveSample::Draw() {
     glDisable(GL_BLEND);
 }
 
-void BezierCurveSample::Shutdown() {
-    GLBaseSample::Shutdown();
+void BezierCurveSample::Destroy() {
+    GLSampleBase::Destroy();
     glDeleteBuffers(1, &m_VboId);
     glDeleteVertexArrays(1, &m_VaoId);
 }
@@ -255,8 +255,7 @@ void BezierCurveSample::Shutdown() {
  * */
 void BezierCurveSample::UpdateMVPMatrix(glm::mat4 &mvpMatrix, int angleX, int angleY,
                                         float ratio) const {
-    LOGD("BezierCurveSample::UpdateMVPMatrix angleX = %d, angleY = %d, ratio = %f",
-         angleX, angleY, ratio)
+    LOGD("BezierCurveSample::UpdateMVPMatrix angleX = %d, angleY = %d, ratio = %f", angleX, angleY, ratio)
 
     angleX = angleX % 360;
     angleY = angleY % 360;
@@ -291,7 +290,7 @@ void BezierCurveSample::UpdateMVPMatrix(glm::mat4 &mvpMatrix, int angleX, int an
 
 void
 BezierCurveSample::UpdateTransformMatrix(float rotateX, float rotateY, float scaleX, float scaleY) {
-    GLBaseSample::UpdateTransformMatrix(rotateX, rotateY, scaleX, scaleY);
+    GLSampleBase::UpdateTransformMatrix(rotateX, rotateY, scaleX, scaleY);
     m_AngleX = static_cast<int>(rotateX);
     m_AngleY = static_cast<int>(rotateY);
     m_ScaleX = scaleX;

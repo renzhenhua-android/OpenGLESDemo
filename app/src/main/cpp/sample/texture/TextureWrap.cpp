@@ -5,7 +5,7 @@
 #include <cstdlib>
 #include "TextureWrap.h"
 
-void TextureWrap::Create() {
+void TextureWrap::Init() {
 	GLUtils::printGLInfo();
 
 	// 顶点着色器
@@ -35,7 +35,7 @@ void TextureWrap::Create() {
 	glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
 }
 
-void TextureWrap::Draw() {
+void TextureWrap::Draw(int width_, int height_) {
 	GLfloat vVertices[] = {
 			-0.3f,  0.3f, 0.0f, 1.0f,   // Position 0
 			-1.0f,  -1.0f,              // TexCoord 0
@@ -114,8 +114,8 @@ void TextureWrap::Draw() {
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_SHORT, indices);
 }
 
-void TextureWrap::Shutdown() {
-	GLBaseSample::Shutdown();
+void TextureWrap::Destroy() {
+	GLSampleBase::Destroy();
 
 	// Delete texture object
 	glDeleteTextures(1, &textureId);

@@ -61,7 +61,7 @@ BigHeadSample::~BigHeadSample() {
 
 }
 
-void BigHeadSample::Create() {
+void BigHeadSample::Init() {
     // 顶点着色器
     VERTEX_SHADER = GLUtils::openTextFile(
             "vertex/vertex_shader_big_head.glsl");
@@ -128,7 +128,7 @@ void BigHeadSample::Create() {
     glClearColor(0.1, 0.1, 0.1, 0.1);
 }
 
-void BigHeadSample::Draw() {
+void BigHeadSample::Draw(int width_, int height_) {
     if (m_ProgramObj == GL_NONE) {
         LOGE("FaceSlenderSample::Draw() m_ProgramObj == GL_NONE return")
         return;
@@ -180,8 +180,8 @@ void BigHeadSample::Draw() {
     GLUtils::setFloat(m_ProgramObj, "u_type", 1);
 }
 
-void BigHeadSample::Shutdown() {
-    GLBaseSample::Shutdown();
+void BigHeadSample::Destroy() {
+    GLSampleBase::Destroy();
     glDeleteBuffers(2, m_VboIds);
     glDeleteVertexArrays(1, &m_VaoId);
     glDeleteTextures(1, &m_TextureId);
@@ -199,7 +199,7 @@ void BigHeadSample::LoadImage(NativeImage *pImage) {
 
 void
 BigHeadSample::UpdateTransformMatrix(float rotateX, float rotateY, float scaleX, float scaleY) {
-    GLBaseSample::UpdateTransformMatrix(rotateX, rotateY, scaleX, scaleY);
+    GLSampleBase::UpdateTransformMatrix(rotateX, rotateY, scaleX, scaleY);
     m_AngleX = static_cast<int>(rotateX);
     m_AngleY = static_cast<int>(rotateY);
     m_ScaleX = scaleX;
@@ -207,8 +207,7 @@ BigHeadSample::UpdateTransformMatrix(float rotateX, float rotateY, float scaleX,
 }
 
 void BigHeadSample::UpdateMVPMatrix(mat4 &mvpMatrix, int angleX, int angleY, float ratio) const {
-    LOGD("BigHeadSample::UpdateMVPMatrix angleX = %d, angleY = %d, ratio = %f", angleX, angleY,
-         ratio)
+    LOGD("BigHeadSample::UpdateMVPMatrix angleX = %d, angleY = %d, ratio = %f", angleX, angleY, ratio)
     angleX = angleX % 360;
     angleY = angleY % 360;
 

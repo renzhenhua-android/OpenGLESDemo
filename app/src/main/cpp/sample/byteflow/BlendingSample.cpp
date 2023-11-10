@@ -41,7 +41,7 @@ BlendingSample::~BlendingSample() {
     }
 }
 
-void BlendingSample::Create() {
+void BlendingSample::Init() {
     //Create RGBA textures
     glGenTextures(RENDER_IMG_NUM, m_TextureIds);
     for (unsigned int m_TextureId : m_TextureIds) {
@@ -149,7 +149,7 @@ void BlendingSample::Create() {
 }
 
 void BlendingSample::LoadMultiImageWithIndex(int index, NativeImage *pImage) {
-    GLBaseSample::LoadMultiImageWithIndex(index, pImage);
+    GLSampleBase::LoadMultiImageWithIndex(index, pImage);
     LOGD("BlendingSample::LoadImage index=%d, pImage = %p", index, pImage->ppPlane[0])
     if (pImage) {
         m_RenderImages[index].width = pImage->width;
@@ -159,7 +159,7 @@ void BlendingSample::LoadMultiImageWithIndex(int index, NativeImage *pImage) {
     }
 }
 
-void BlendingSample::Draw() {
+void BlendingSample::Draw(int width_, int height_) {
     LOGD("BlendingSample::Draw()")
 
     if (m_ProgramObj == GL_NONE) return;
@@ -242,8 +242,8 @@ void BlendingSample::Draw() {
     glDisable(GL_BLEND);
 }
 
-void BlendingSample::Shutdown() {
-    GLBaseSample::Shutdown();
+void BlendingSample::Destroy() {
+    GLSampleBase::Destroy();
     glDeleteBuffers(3, m_VboIds);
     glDeleteVertexArrays(3, m_VaoIds);
     glDeleteTextures(3, m_TextureIds);
@@ -252,15 +252,14 @@ void BlendingSample::Shutdown() {
 
 void
 BlendingSample::UpdateTransformMatrix(float rotateX, float rotateY, float scaleX, float scaleY) {
-    GLBaseSample::UpdateTransformMatrix(rotateX, rotateY, scaleX, scaleY);
+    GLSampleBase::UpdateTransformMatrix(rotateX, rotateY, scaleX, scaleY);
     m_AngleX = static_cast<int>(rotateX);
     m_AngleY = static_cast<int>(rotateY);
 }
 
 void BlendingSample::UpdateMatrix(glm::mat4 &mvpMatrix, int angleXRotate, int angleYRotate,
                                   float scale, glm::vec3 transVec3, float ratio) {
-    LOGD("BlendingSample::UpdateMatrix angleX = %d, angleY = %d, ratio = %f", angleXRotate,
-         angleYRotate, ratio)
+    LOGD("BlendingSample::UpdateMatrix angleX = %d, angleY = %d, ratio = %f", angleXRotate,angleYRotate, ratio)
     angleXRotate = angleXRotate % 360;
     angleYRotate = angleYRotate % 360;
 

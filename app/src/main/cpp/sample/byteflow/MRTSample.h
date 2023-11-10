@@ -6,21 +6,21 @@
 #define OPENGLESDEMO_MRTSAMPLE_H
 
 #include <glm/gtc/matrix_transform.hpp>
-#include <GLBaseSample.h>
+#include <GLSampleBase.h>
 
 #define ATTACHMENT_NUM 4
 
-class MRTSample : public GLBaseSample {
+class MRTSample : public GLSampleBase {
 public:
     MRTSample();
 
     virtual ~MRTSample();
 
-    virtual void Create();
+    virtual void Init();
 
-    virtual void Draw();
+    virtual void Draw(int width_, int height_);
 
-    virtual void Shutdown();
+    virtual void Destroy();
 
     virtual void LoadImage(NativeImage *pImage);
 

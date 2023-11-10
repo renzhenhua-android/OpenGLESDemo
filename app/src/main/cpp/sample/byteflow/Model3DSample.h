@@ -5,21 +5,21 @@
 #ifndef OPENGLESDEMO_MODEL3DSAMPLE_H
 #define OPENGLESDEMO_MODEL3DSAMPLE_H
 
-#include <GLBaseSample.h>
+#include <GLSampleBase.h>
 #include <shader.h>
 #include <model.h>
 
-class Model3DSample : public GLBaseSample {
+class Model3DSample : public GLSampleBase {
 public:
     Model3DSample();
 
     virtual ~Model3DSample() = default;
 
-    virtual void Create();
+    virtual void Init();
 
-    virtual void Draw();
+    virtual void Draw(int width_, int height_);
 
-    virtual void Shutdown();
+    virtual void Destroy();
 
     virtual void UpdateTransformMatrix(float rotateX, float rotateY, float scaleX, float scaleY);
 

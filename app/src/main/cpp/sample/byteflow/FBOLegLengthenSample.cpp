@@ -93,7 +93,7 @@ void FBOLegLengthenSample::LoadImage(NativeImage *pImage) {
     }
 }
 
-void FBOLegLengthenSample::Create() {
+void FBOLegLengthenSample::Init() {
     m_bIsVerticalMode = true;
 
     RectF inRectF;
@@ -686,7 +686,7 @@ void FBOLegLengthenSample::Create() {
     }
 }
 
-void FBOLegLengthenSample::Draw() {
+void FBOLegLengthenSample::Draw(int width_, int height_) {
     LOGD("FBOLegLengthenSample::Draw [screenW, screenH] = [%d, %d]", m_Width, m_Height)
     //纹理就是一个“可以被采样的复杂的数据集合” 纹理作为 GPU 图像数据结构
     //glPixelStorei(GL_UNPACK_ALIGNMENT,1);
@@ -766,8 +766,8 @@ void FBOLegLengthenSample::Draw() {
 //	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
-void FBOLegLengthenSample::Shutdown() {
-    GLBaseSample::Shutdown();
+void FBOLegLengthenSample::Destroy() {
+    GLSampleBase::Destroy();
 
     if (m_FboProgramObj) {
         glDeleteProgram(m_FboProgramObj);

@@ -54,7 +54,7 @@ FBOBlitSample::~FBOBlitSample() {
     NativeImageUtil::FreeNativeImage(&m_RenderImage);
 }
 
-void FBOBlitSample::Create() {
+void FBOBlitSample::Init() {
     // 顶点着色器
     VERTEX_SHADER = GLUtils::openTextFile(
             "vertex/vertex_shader_coord_system.glsl");
@@ -126,7 +126,7 @@ void FBOBlitSample::Create() {
     LOGD("MRTSample::Init InitFBO = %d", InitFBO())
 }
 
-void FBOBlitSample::Draw() {
+void FBOBlitSample::Draw(int width_, int height_) {
     LOGD("FBOBlitSample::Draw()")
     if (m_ProgramObj == GL_NONE || m_TextureId == GL_NONE) return;
 
@@ -166,8 +166,8 @@ void FBOBlitSample::Draw() {
     BlitTextures();
 }
 
-void FBOBlitSample::Shutdown() {
-    GLBaseSample::Shutdown();
+void FBOBlitSample::Destroy() {
+    GLSampleBase::Destroy();
 
     glDeleteBuffers(3, m_VboIds);
     glDeleteVertexArrays(1, &m_VaoId);
@@ -191,8 +191,7 @@ void FBOBlitSample::LoadImage(NativeImage *pImage) {
  * */
 void
 FBOBlitSample::UpdateMVPMatrix(glm::mat4 &mvpMatrix, int angleX, int angleY, float ratio) const {
-    LOGD("FBOBlitSample::UpdateMVPMatrix angleX = %d, angleY = %d, ratio = %f", angleX, angleY,
-         ratio)
+    LOGD("FBOBlitSample::UpdateMVPMatrix angleX = %d, angleY = %d, ratio = %f", angleX, angleY, ratio)
     angleX = angleX % 360;
     angleY = angleY % 360;
 

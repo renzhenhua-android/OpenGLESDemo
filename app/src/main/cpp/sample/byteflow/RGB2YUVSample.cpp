@@ -55,7 +55,7 @@ RGB2YUVSample::~RGB2YUVSample() {
     NativeImageUtil::FreeNativeImage(&m_RenderImage);
 }
 
-void RGB2YUVSample::Create() {
+void RGB2YUVSample::Init() {
     // 顶点着色器
     VERTEX_SHADER = GLUtils::openTextFile(
             "vertex/vertex_shader_texture_map.glsl");
@@ -158,7 +158,7 @@ void RGB2YUVSample::Create() {
     }
 }
 
-void RGB2YUVSample::Draw() {
+void RGB2YUVSample::Draw(int width_, int height_) {
     // 离屏渲染
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
     // Do FBO off screen rendering
@@ -222,8 +222,8 @@ void RGB2YUVSample::Draw() {
     glBindVertexArray(GL_NONE);
 }
 
-void RGB2YUVSample::Shutdown() {
-    GLBaseSample::Shutdown();
+void RGB2YUVSample::Destroy() {
+    GLSampleBase::Destroy();
 
     if (m_FboProgramObj) {
         glDeleteProgram(m_FboProgramObj);

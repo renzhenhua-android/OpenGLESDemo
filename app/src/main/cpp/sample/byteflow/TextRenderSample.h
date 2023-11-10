@@ -6,7 +6,7 @@
 #define OPENGLESDEMO_TEXTRENDERSAMPLE_H
 
 #include <glm/gtc/matrix_transform.hpp>
-#include <GLBaseSample.h>
+#include <GLSampleBase.h>
 #include <ft2build.h>
 #include <freetype/ftglyph.h>
 #include <string>
@@ -24,18 +24,18 @@ struct Character {
     GLuint advance;    // Horizontal offset to advance to next glyph
 };
 
-class TextRenderSample : public GLBaseSample {
+class TextRenderSample : public GLSampleBase {
 
 public:
     TextRenderSample();
 
     virtual ~TextRenderSample();
 
-    virtual void Create();
+    virtual void Init();
 
-    virtual void Draw();
+    virtual void Draw(int width_, int height_);
 
-    virtual void Shutdown();
+    virtual void Destroy();
 
     virtual void LoadImage(NativeImage *pImage);
 

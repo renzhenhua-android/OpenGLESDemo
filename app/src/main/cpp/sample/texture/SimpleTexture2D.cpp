@@ -4,7 +4,7 @@
 
 #include "SimpleTexture2D.h"
 
-void SimpleTexture2D::Create() {
+void SimpleTexture2D::Init() {
     GLUtils::printGLInfo();
 
     // 顶点着色器
@@ -32,7 +32,7 @@ void SimpleTexture2D::Create() {
 }
 
 
-void SimpleTexture2D::Draw() {
+void SimpleTexture2D::Draw(int width_, int height_) {
     GLfloat vVertices[] =
             {
                     -0.5f, 0.5f, 0.0f,     // Position 0
@@ -119,8 +119,8 @@ GLuint SimpleTexture2D::CreateSimpleTexture2D() {
     return simple_textureId;
 }
 
-void SimpleTexture2D::Shutdown() {
-    GLBaseSample::Shutdown();
+void SimpleTexture2D::Destroy() {
+    GLSampleBase::Destroy();
 
     // Delete texture object
     glDeleteTextures ( 1, &textureId );

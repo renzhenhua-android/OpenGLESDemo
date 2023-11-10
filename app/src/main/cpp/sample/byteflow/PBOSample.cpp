@@ -84,7 +84,7 @@ void PBOSample::LoadImage(NativeImage *pImage) {
     }
 }
 
-void PBOSample::Create() {
+void PBOSample::Init() {
     //顶点坐标
     GLfloat vVertices[] = {
             -1.0f, -1.0f, 0.0f,
@@ -255,7 +255,7 @@ void PBOSample::Create() {
     }
 }
 
-void PBOSample::Draw() {
+void PBOSample::Draw(int width_, int height_) {
     // 离屏渲染
     //glPixelStorei(GL_UNPACK_ALIGNMENT,1);
     glViewport(0, 0, m_RenderImage.width, m_RenderImage.height);
@@ -302,8 +302,8 @@ void PBOSample::Draw() {
     m_FrameIndex++;
 }
 
-void PBOSample::Shutdown() {
-    GLBaseSample::Shutdown();
+void PBOSample::Destroy() {
+    GLSampleBase::Destroy();
 
     if (m_FboProgramObj) {
         glDeleteProgram(m_FboProgramObj);

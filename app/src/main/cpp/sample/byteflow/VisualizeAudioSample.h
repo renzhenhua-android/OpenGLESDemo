@@ -6,7 +6,7 @@
 #define OPENGLESDEMO_VISUALIZEAUDIOSAMPLE_H
 
 #include <glm/gtc/matrix_transform.hpp>
-#include <GLBaseSample.h>
+#include <GLSampleBase.h>
 #include <mutex>
 
 #define MAX_AUDIO_LEVEL 2000
@@ -14,18 +14,18 @@
 
 using namespace glm;
 
-class VisualizeAudioSample : public GLBaseSample {
+class VisualizeAudioSample : public GLSampleBase {
 public:
     VisualizeAudioSample();
 
     virtual ~VisualizeAudioSample();
 
 
-    virtual void Create();
+    virtual void Init();
 
-    virtual void Draw();
+    virtual void Draw(int width_, int height_);
 
-    virtual void Shutdown();
+    virtual void Destroy();
 
     virtual void LoadAudioData(short *buffer, int len);
 

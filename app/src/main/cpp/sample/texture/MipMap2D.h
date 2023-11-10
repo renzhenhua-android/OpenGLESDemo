@@ -5,19 +5,19 @@
 #ifndef OPENGLESDEMO_MIPMAP2D_H
 #define OPENGLESDEMO_MIPMAP2D_H
 
-#include <GLBaseSample.h>
+#include <GLSampleBase.h>
 
-class MipMap2D : public GLBaseSample {
+class MipMap2D : public GLSampleBase {
 public:
     MipMap2D() = default;
 
     virtual ~MipMap2D() = default;
 
-    virtual void Create();
+    virtual void Init();
 
-    virtual void Draw();
+    virtual void Draw(int width_, int height_);
 
-    virtual void Shutdown();
+    virtual void Destroy();
 
 private:
 

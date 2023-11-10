@@ -22,7 +22,7 @@ MultiLightingsSample::~MultiLightingsSample() {
     NativeImageUtil::FreeNativeImage(&m_RenderImage);
 }
 
-void MultiLightingsSample::Create() {
+void MultiLightingsSample::Init() {
     //Create RGBA texture
     glGenTextures(1, &m_TextureId);
     glBindTexture(GL_TEXTURE_2D, m_TextureId);
@@ -88,7 +88,7 @@ void MultiLightingsSample::Create() {
     glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
 }
 
-void MultiLightingsSample::Draw() {
+void MultiLightingsSample::Draw(int width_, int height_) {
     LOGD("MultiLightingsSample::Draw()");
 
     if (m_ProgramObj == GL_NONE || m_TextureId == GL_NONE) return;
@@ -140,8 +140,8 @@ void MultiLightingsSample::Draw() {
     }
 }
 
-void MultiLightingsSample::Shutdown() {
-    GLBaseSample::Shutdown();
+void MultiLightingsSample::Destroy() {
+    GLSampleBase::Destroy();
 
     glDeleteBuffers(1, m_VboIds);
     glDeleteVertexArrays(1, &m_VaoId);
@@ -173,8 +173,7 @@ MultiLightingsSample::UpdateMatrix(glm::mat4 &mvpMatrix, glm::mat4 &modelMatrix,
                                    int angleYRotate, float scale, glm::vec3 transVec3,
                                    float ratio) {
 
-    LOGD("MultiLightingsSample::UpdateMatrix angleX = %d, angleY = %d, ratio = %f", angleXRotate,
-         angleYRotate, ratio);
+    LOGD("MultiLightingsSample::UpdateMatrix angleX = %d, angleY = %d, ratio = %f", angleXRotate,angleYRotate, ratio);
     angleXRotate = angleXRotate % 360;
     angleYRotate = angleYRotate % 360;
 

@@ -5,7 +5,7 @@
 #include <cstdlib>
 #include "MRT.h"
 
-void MRT::Create() {
+void MRT::Init() {
 	GLUtils::printGLInfo();
 
 	// Main Program
@@ -79,8 +79,8 @@ void MRT::initFBO() {
 	glBindFramebuffer( GL_FRAMEBUFFER, defaultFramebuffer);
 }
 
-void MRT::Shutdown() {
-	GLBaseSample::Shutdown();
+void MRT::Destroy() {
+	GLSampleBase::Destroy();
 	// Delete texture objects
 	glDeleteTextures ( 4, colorTexId );
 
@@ -88,7 +88,7 @@ void MRT::Shutdown() {
 	glDeleteFramebuffers ( 1, &fbo );
 }
 
-void MRT::Draw() {
+void MRT::Draw(int width_, int height_) {
 	GLint defaultFramebuffer = 0;
 	const GLenum attachments[4] =
 			{

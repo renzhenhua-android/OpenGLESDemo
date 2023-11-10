@@ -3,21 +3,21 @@
 //
 #pragma once
 
-#include <GLBaseSample.h>
+#include <GLSampleBase.h>
 
 #define POSITION_LOC  0
 
-class TerrainRender : public GLBaseSample {
+class TerrainRender : public GLSampleBase {
 public:
     TerrainRender() = default;
 
     virtual ~TerrainRender() = default;
 
-    virtual void Create();
+    virtual void Init();
 
-    virtual void Draw();
+    virtual void Draw(int width_, int height_);
 
-    virtual void Shutdown();
+    virtual void Destroy();
 
 private:
 

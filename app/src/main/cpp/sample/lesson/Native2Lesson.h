@@ -1,21 +1,21 @@
 #ifndef OPENGLLESSON_NATIVE2LESSON_H
 #define OPENGLLESSON_NATIVE2LESSON_H
 
-#include <GLBaseSample.h>
+#include <GLSampleBase.h>
 #include "lesson_cube_data.h"
-class Native2Lesson: public GLBaseSample {
+class Native2Lesson: public GLSampleBase {
 public:
     Native2Lesson();
 
     virtual ~Native2Lesson();
 
-    virtual void Create();
+    virtual void Init();
 
     virtual void Change(int width, int height);
 
-    virtual void Draw();
+    virtual void Draw(int width_, int height_);
 
-    virtual void Shutdown();
+    virtual void Destroy();
 
 private:
     Matrix *mViewMatrix;

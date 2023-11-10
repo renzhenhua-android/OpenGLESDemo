@@ -53,7 +53,7 @@ RotateTexture::~RotateTexture() {
 }
 
 
-void RotateTexture::Create() {
+void RotateTexture::Init() {
     // 顶点着色器
     VERTEX_SHADER = GLUtils::openTextFile(
             "vertex/vertex_shader_rotate_texture.glsl");
@@ -93,7 +93,7 @@ void RotateTexture::Create() {
     glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
 }
 
-void RotateTexture::Draw() {
+void RotateTexture::Draw(int width_, int height_) {
     if (m_ProgramObj == GL_NONE || m_TextureId == GL_NONE) return;
 
     // 清空缓冲区: STENCIL_BUFFER、COLOR_BUFFER、DEPTH_BUFFER
@@ -203,8 +203,8 @@ void RotateTexture::updateVertexCoordinates() {// 实际旋转角度
 }
 
 
-void RotateTexture::Shutdown() {
-    GLBaseSample::Shutdown();
+void RotateTexture::Destroy() {
+    GLSampleBase::Destroy();
     glDeleteTextures(1, &m_TextureId);
 }
 

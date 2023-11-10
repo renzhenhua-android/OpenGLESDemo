@@ -53,7 +53,7 @@ MRTSample::~MRTSample() {
     NativeImageUtil::FreeNativeImage(&m_RenderImage);
 }
 
-void MRTSample::Create() {
+void MRTSample::Init() {
     // 顶点着色器
     VERTEX_SHADER = GLUtils::openTextFile(
             "vertex/vertex_shader_coord_system.glsl");
@@ -133,7 +133,7 @@ void MRTSample::Create() {
     LOGD("MRTSample::Init InitFBO = %d", InitFBO())
 }
 
-void MRTSample::Draw() {
+void MRTSample::Draw(int width_, int height_) {
     LOGD("MRTSample::Draw()")
     if(m_MRTProgramObj == GL_NONE || m_TextureId == GL_NONE) return;
 
@@ -187,8 +187,8 @@ void MRTSample::Draw() {
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_SHORT, nullptr);
 }
 
-void MRTSample::Shutdown() {
-    GLBaseSample::Shutdown();
+void MRTSample::Destroy() {
+    GLSampleBase::Destroy();
 
     glDeleteProgram(m_MRTProgramObj);
     glDeleteBuffers(3, m_VboIds);
@@ -211,7 +211,7 @@ void MRTSample::LoadImage(NativeImage *pImage) {
 }
 
 void MRTSample::UpdateTransformMatrix(float rotateX, float rotateY, float scaleX, float scaleY) {
-    GLBaseSample::UpdateTransformMatrix(rotateX, rotateY, scaleX, scaleY);
+    GLSampleBase::UpdateTransformMatrix(rotateX, rotateY, scaleX, scaleY);
     m_AngleX = static_cast<int>(rotateX);
     m_AngleY = static_cast<int>(rotateY);
     m_ScaleX = scaleX;

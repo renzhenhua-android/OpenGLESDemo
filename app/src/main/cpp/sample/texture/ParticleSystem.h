@@ -5,7 +5,7 @@
 #ifndef OPENGLESDEMO_PARTICLESYSTEM_H
 #define OPENGLESDEMO_PARTICLESYSTEM_H
 
-#include <GLBaseSample.h>
+#include <GLSampleBase.h>
 
 #define PARTICLE_SYSTEM_NUM_PARTICLES   1000
 #define PARTICLE_SIZE   7
@@ -14,17 +14,17 @@
 #define PARTICLE_SYSTEM_ATTRIBUTE_START_POSITION_LOCATION  1
 #define PARTICLE_SYSTEM_ATTRIBUTE_END_POSITION_LOCATION    2
 
-class ParticleSystem : public GLBaseSample{
+class ParticleSystem : public GLSampleBase{
 public:
     ParticleSystem() = default;
 
     virtual ~ParticleSystem() = default;
 
-    virtual void Create();
+    virtual void Init();
 
-    virtual void Draw();
+    virtual void Draw(int width_, int height_);
 
-    virtual void Shutdown();
+    virtual void Destroy();
 
 private:
     // Uniform location

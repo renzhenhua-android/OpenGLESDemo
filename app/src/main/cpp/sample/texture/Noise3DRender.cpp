@@ -6,7 +6,7 @@
 #include "Noise3DRender.h"
 
 
-void Noise3DRender::Create() {
+void Noise3DRender::Init() {
     GLUtils::printGLInfo();
 
     // Create the 3D texture
@@ -46,7 +46,7 @@ void Noise3DRender::Create() {
     glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
 }
 
-void Noise3DRender::Draw() {
+void Noise3DRender::Draw(int width_, int height_) {
     // 每次更新一下
     update(getDeltaTime());
 
@@ -99,8 +99,8 @@ void Noise3DRender::Draw() {
 
 }
 
-void Noise3DRender::Shutdown() {
-    GLBaseSample::Shutdown();
+void Noise3DRender::Destroy() {
+    GLSampleBase::Destroy();
     if (vertices != nullptr) {
         free(vertices);
     }

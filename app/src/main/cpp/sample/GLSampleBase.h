@@ -12,9 +12,9 @@
 // 注意，这个目录在java层创建，参考 com.oyp.openglesdemo.activity.NativeRenderActivity.onResume方法
 #define DEFAULT_OGL_ASSETS_DIR "/data/data/com.oyp.openglesdemo/cache"
 
-class GLBaseSample {
+class GLSampleBase {
 public:
-    GLBaseSample() {
+    GLSampleBase() {
         VERTEX_SHADER = GL_NONE;
         FRAGMENT_SHADER = GL_NONE;
         m_ProgramObj = 0;
@@ -22,9 +22,9 @@ public:
         m_Height = 0;
     }
 
-    virtual ~GLBaseSample() {}
+    virtual ~GLSampleBase() {}
 
-    virtual void Create() = 0;
+    virtual void Init() = 0;
 
     virtual void Change(int width, int height) {
         LOGD("Change() width = %d , height = %d\n", width, height)
@@ -37,9 +37,9 @@ public:
         glViewport(0, 0, m_Width, m_Height);
     }
 
-    virtual void Draw() = 0;
+    virtual void Draw(int width_, int height_) = 0;
 
-    virtual void Shutdown(){
+    virtual void Destroy(){
         if (m_ProgramObj) {
             glDeleteProgram(m_ProgramObj);
             m_ProgramObj = GL_NONE;

@@ -5,22 +5,22 @@
 #ifndef OPENGLESDEMO_MULTITEXTURE_H
 #define OPENGLESDEMO_MULTITEXTURE_H
 
-#include <GLBaseSample.h>
+#include <GLSampleBase.h>
 
 #define MULTI_TEXTURE_VERTEX_POS_INDX               0
 #define MULTI_TEXTURE_VERTEX_TEXCOORD_INDX          1
 
-class MultiTexture : public GLBaseSample {
+class MultiTexture : public GLSampleBase {
 public:
     MultiTexture() = default;
 
     virtual ~MultiTexture() = default;
 
-    virtual void Create();
+    virtual void Init();
 
-    virtual void Draw();
+    virtual void Draw(int width_, int height_);
 
-    virtual void Shutdown();
+    virtual void Destroy();
 
 private:
     // Sampler locations

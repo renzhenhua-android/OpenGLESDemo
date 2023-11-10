@@ -43,7 +43,7 @@ SkyBoxSample::~SkyBoxSample() {
     }
 }
 
-void SkyBoxSample::Create() {
+void SkyBoxSample::Init() {
     // 顶点着色器
     VERTEX_SHADER = GLUtils::openTextFile(
             "vertex/vertex_shader_skybox.glsl");
@@ -111,7 +111,7 @@ void SkyBoxSample::Create() {
     glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
 }
 
-void SkyBoxSample::Draw() {
+void SkyBoxSample::Draw(int width_, int height_) {
     LOGD("SkyBoxSample::Draw()")
 
     if (m_ProgramObj == GL_NONE || m_CubeProgramObj == GL_NONE) return;
@@ -192,8 +192,8 @@ void SkyBoxSample::Draw() {
     GO_CHECK_GL_ERROR()
 }
 
-void SkyBoxSample::Shutdown() {
-    GLBaseSample::Shutdown();
+void SkyBoxSample::Destroy() {
+    GLSampleBase::Destroy();
 
     glDeleteVertexArrays(1, &m_SkyBoxVaoId);
     glDeleteBuffers(1, &m_SkyBoxVboId);
@@ -234,7 +234,7 @@ void SkyBoxSample::LoadMultiImageWithIndex(int index, NativeImage *pImage) {
 }
 
 void SkyBoxSample::UpdateTransformMatrix(float rotateX, float rotateY, float scaleX, float scaleY) {
-    GLBaseSample::UpdateTransformMatrix(rotateX, rotateY, scaleX, scaleY);
+    GLSampleBase::UpdateTransformMatrix(rotateX, rotateY, scaleX, scaleY);
     m_AngleX = static_cast<int>(rotateX);
     m_AngleY = static_cast<int>(rotateY);
     m_ScaleX = scaleX;
@@ -243,8 +243,7 @@ void SkyBoxSample::UpdateTransformMatrix(float rotateX, float rotateY, float sca
 
 void SkyBoxSample::UpdateMVPMatrix(glm::mat4 &mvpMatrix, int angleX, int angleY, float scale,
                                    float ratio) {
-    LOGD("SkyBoxSample::UpdateMVPMatrix angleX = %d, angleY = %d, ratio = %f", angleX,
-         angleY, ratio)
+    LOGD("SkyBoxSample::UpdateMVPMatrix angleX = %d, angleY = %d, ratio = %f", angleX, angleY, ratio)
     angleX = angleX % 360;
     angleY = angleY % 360;
 

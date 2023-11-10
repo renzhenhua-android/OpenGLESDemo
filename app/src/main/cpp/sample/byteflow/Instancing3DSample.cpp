@@ -47,7 +47,7 @@ Instancing3DSample::~Instancing3DSample() {
     NativeImageUtil::FreeNativeImage(&m_RenderImage);
 }
 
-void Instancing3DSample::Create() {
+void Instancing3DSample::Init() {
     //Create RGBA texture
     glGenTextures(1, &m_TextureId);
     glBindTexture(GL_TEXTURE_2D, m_TextureId);
@@ -156,7 +156,7 @@ void Instancing3DSample::Create() {
     glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
 }
 
-void Instancing3DSample::Draw() {
+void Instancing3DSample::Draw(int width_, int height_) {
     LOGD("Instancing3DSample::Draw()")
 
     if (m_ProgramObj == GL_NONE || m_TextureId == GL_NONE) {
@@ -214,8 +214,8 @@ void Instancing3DSample::Draw() {
     glBindVertexArray(0);
 }
 
-void Instancing3DSample::Shutdown() {
-    GLBaseSample::Shutdown();
+void Instancing3DSample::Destroy() {
+    GLSampleBase::Destroy();
 
     glDeleteBuffers(2, m_VboIds);
     glDeleteVertexArrays(1, &m_VaoId);
@@ -238,8 +238,7 @@ void Instancing3DSample::LoadImage(NativeImage *pImage) {
 void
 Instancing3DSample::UpdateMatrix(glm::mat4 &mvpMatrix, glm::mat4 &modelMatrix, int angleXRotate,
                                  int angleYRotate, float scale, glm::vec3 transVec3, float ratio) {
-    LOGD("Instancing3DSample::UpdateMatrix angleX = %d, angleY = %d, ratio = %f", angleXRotate,
-         angleYRotate, ratio)
+    LOGD("Instancing3DSample::UpdateMatrix angleX = %d, angleY = %d, ratio = %f", angleXRotate,angleYRotate, ratio)
     angleXRotate = angleXRotate % 360;
     angleYRotate = angleYRotate % 360;
 
@@ -274,7 +273,7 @@ Instancing3DSample::UpdateMatrix(glm::mat4 &mvpMatrix, glm::mat4 &modelMatrix, i
 
 void Instancing3DSample::UpdateTransformMatrix(float rotateX, float rotateY, float scaleX,
                                                float scaleY) {
-    GLBaseSample::UpdateTransformMatrix(rotateX, rotateY, scaleX, scaleY);
+    GLSampleBase::UpdateTransformMatrix(rotateX, rotateY, scaleX, scaleY);
     m_AngleX = static_cast<int>(rotateX);
     m_AngleY = static_cast<int>(rotateY);
     m_ScaleX = 2 * scaleX;

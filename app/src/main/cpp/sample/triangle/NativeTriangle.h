@@ -1,8 +1,8 @@
 #pragma once
 
-#include <GLBaseSample.h>
+#include <GLSampleBase.h>
 
-class NativeTriangle : public GLBaseSample {
+class NativeTriangle : public GLSampleBase {
 
 #define VERTEX_POS_INDX       0
 
@@ -11,9 +11,9 @@ public:
 
     virtual ~NativeTriangle() = default;
 
-    virtual void Create();
+    virtual void Init();
 
-    virtual void Draw();
+    virtual void Draw(int width_, int height_);
 
-    virtual void Shutdown();
+    virtual void Destroy();
 };

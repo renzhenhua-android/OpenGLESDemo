@@ -6,19 +6,19 @@
 #define OPENGLESDEMO_RGB2YUVSAMPLE_H
 
 #include <glm/gtc/matrix_transform.hpp>
-#include <GLBaseSample.h>
+#include <GLSampleBase.h>
 
-class RGB2YUVSample  : public GLBaseSample {
+class RGB2YUVSample  : public GLSampleBase {
 public:
     RGB2YUVSample();
 
     virtual ~RGB2YUVSample();
 
-    virtual void Create();
+    virtual void Init();
 
-    virtual void Draw();
+    virtual void Draw(int width_, int height_);
 
-    virtual void Shutdown();
+    virtual void Destroy();
 
     virtual void LoadImage(NativeImage *pImage);
 

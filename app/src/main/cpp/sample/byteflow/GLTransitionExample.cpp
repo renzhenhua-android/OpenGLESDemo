@@ -54,7 +54,7 @@ GLTransitionExample::~GLTransitionExample() {
     }
 }
 
-void GLTransitionExample::Create() {
+void GLTransitionExample::Init() {
     // 顶点着色器
     VERTEX_SHADER = GLUtils::openTextFile(
             "vertex/vertex_shader_coord_system.glsl");
@@ -126,8 +126,7 @@ void GLTransitionExample::Create() {
         default:
             break;
     }
-    LOGD("BaseShaderToySimpleSample::Create() mRenderSampleType =%d, mFragmentShaderPath = %s",
-         mRenderSampleType, mFragmentShaderPath)
+    LOGD("BaseShaderToySimpleSample::Create() mRenderSampleType =%d, mFragmentShaderPath = %s", mRenderSampleType, mFragmentShaderPath)
     if (mFragmentShaderPath == GL_NONE) {
         LOGD("BaseShaderToySimpleSample::Create() mFragmentShaderPath == GL_NONE 直接return")
         return;
@@ -202,8 +201,7 @@ void GLTransitionExample::Create() {
 }
 
 void GLTransitionExample::LoadMultiImageWithIndex(int index, NativeImage *pImage) {
-    LOGD("GLTransitionExample::LoadMultiImageWithIndex pImage = %p,[w=%d,h=%d,f=%d]",
-         pImage->ppPlane[0], pImage->width, pImage->height, pImage->format)
+    LOGD("GLTransitionExample::LoadMultiImageWithIndex pImage = %p,[w=%d,h=%d,f=%d]", pImage->ppPlane[0], pImage->width, pImage->height, pImage->format)
 
     if (pImage && index >= 0 && index < BF_IMG_NUM) {
         m_RenderImages[index].width = pImage->width;
@@ -213,7 +211,7 @@ void GLTransitionExample::LoadMultiImageWithIndex(int index, NativeImage *pImage
     }
 }
 
-void GLTransitionExample::Draw() {
+void GLTransitionExample::Draw(int width_, int height_) {
     LOGD("GLTransitionExample::Draw()")
 
     if (m_ProgramObj == GL_NONE || m_TextureIds[0] == GL_NONE) return;
@@ -249,8 +247,8 @@ void GLTransitionExample::Draw() {
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_SHORT, nullptr);
 }
 
-void GLTransitionExample::Shutdown() {
-    GLBaseSample::Shutdown();
+void GLTransitionExample::Destroy() {
+    GLSampleBase::Destroy();
 
     glDeleteBuffers(3, m_VboIds);
     glDeleteVertexArrays(1, &m_VaoId);
@@ -259,7 +257,7 @@ void GLTransitionExample::Shutdown() {
 
 void GLTransitionExample::UpdateTransformMatrix(float rotateX, float rotateY, float scaleX,
                                                 float scaleY) {
-    GLBaseSample::UpdateTransformMatrix(rotateX, rotateY, scaleX, scaleY);
+    GLSampleBase::UpdateTransformMatrix(rotateX, rotateY, scaleX, scaleY);
     m_AngleX = static_cast<int>(rotateX);
     m_AngleY = static_cast<int>(rotateY);
     m_ScaleX = scaleX;
@@ -268,8 +266,7 @@ void GLTransitionExample::UpdateTransformMatrix(float rotateX, float rotateY, fl
 
 void GLTransitionExample::UpdateMVPMatrix(glm::mat4 &mvpMatrix, int angleX, int angleY,
                                           float ratio) const {
-    LOGD("GLTransitionExample::UpdateMVPMatrix angleX = %d, angleY = %d, ratio = %f", angleX,
-         angleY, ratio);
+    LOGD("GLTransitionExample::UpdateMVPMatrix angleX = %d, angleY = %d, ratio = %f", angleX, angleY, ratio);
     angleX = angleX % 360;
     angleY = angleY % 360;
 

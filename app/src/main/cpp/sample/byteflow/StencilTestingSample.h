@@ -6,20 +6,20 @@
 #define OPENGLESDEMO_STENCILTESTINGSAMPLE_H
 
 #include <glm/gtc/matrix_transform.hpp>
-#include <GLBaseSample.h>
+#include <GLSampleBase.h>
 
-class StencilTestingSample : public GLBaseSample
+class StencilTestingSample : public GLSampleBase
 {
 public:
     StencilTestingSample();
 
     virtual ~StencilTestingSample();
 
-    virtual void Create();
+    virtual void Init();
 
-    virtual void Draw();
+    virtual void Draw(int width_, int height_);
 
-    virtual void Shutdown();
+    virtual void Destroy();
 
     virtual void LoadImage(NativeImage *pImage);
 

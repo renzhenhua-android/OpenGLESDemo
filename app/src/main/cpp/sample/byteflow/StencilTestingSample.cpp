@@ -93,7 +93,7 @@ StencilTestingSample::~StencilTestingSample() {
     NativeImageUtil::FreeNativeImage(&m_RenderImage);
 }
 
-void StencilTestingSample::Create() {
+void StencilTestingSample::Init() {
 //Create RGBA texture
     glGenTextures(1, &m_TextureId);
     glBindTexture(GL_TEXTURE_2D, m_TextureId);
@@ -180,7 +180,7 @@ void StencilTestingSample::Create() {
     glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
 }
 
-void StencilTestingSample::Draw() {
+void StencilTestingSample::Draw(int width_, int height_) {
     LOGD("StencilTestingSample::Draw()")
 
     if (m_ProgramObj == GL_NONE || m_TextureId == GL_NONE) return;
@@ -324,8 +324,8 @@ void StencilTestingSample::drawContainer(float ratio) {
     glBindVertexArray(0);
 }
 
-void StencilTestingSample::Shutdown() {
-    GLBaseSample::Shutdown();
+void StencilTestingSample::Destroy() {
+    GLSampleBase::Destroy();
 
     glDeleteBuffers(1, m_VboIds);
     glDeleteVertexArrays(1, &m_VaoId);
@@ -347,7 +347,7 @@ void StencilTestingSample::LoadImage(NativeImage *pImage) {
 
 void StencilTestingSample::UpdateTransformMatrix(float rotateX, float rotateY, float scaleX,
                                                  float scaleY) {
-    GLBaseSample::UpdateTransformMatrix(rotateX, rotateY, scaleX, scaleY);
+    GLSampleBase::UpdateTransformMatrix(rotateX, rotateY, scaleX, scaleY);
     m_AngleX = static_cast<int>(rotateX);
     m_AngleY = static_cast<int>(rotateY);
 }
@@ -356,8 +356,7 @@ void
 StencilTestingSample::UpdateMatrix(glm::mat4 &mvpMatrix, glm::mat4 &modelMatrix, int angleXRotate,
                                    int angleYRotate, float scale, glm::vec3 transVec3,
                                    float ratio) {
-    LOGD("StencilTestingSample::UpdateMatrix angleX = %d, angleY = %d, ratio = %f", angleXRotate,
-         angleYRotate, ratio)
+    LOGD("StencilTestingSample::UpdateMatrix angleX = %d, angleY = %d, ratio = %f", angleXRotate,angleYRotate, ratio)
     angleXRotate = angleXRotate % 360;
     angleYRotate = angleYRotate % 360;
 

@@ -5,19 +5,19 @@
 #ifndef OPENGLESDEMO_MRT_H
 #define OPENGLESDEMO_MRT_H
 
-#include <GLBaseSample.h>
+#include <GLSampleBase.h>
 
-class MRT : public GLBaseSample {
+class MRT : public GLSampleBase {
 public:
     MRT() = default;
 
     virtual ~MRT() = default;
 
-    virtual void Create();
+    virtual void Init();
 
-    virtual void Draw();
+    virtual void Draw(int width_, int height_);
 
-    virtual void Shutdown();
+    virtual void Destroy();
 
 private:
     // Handle to a framebuffer object

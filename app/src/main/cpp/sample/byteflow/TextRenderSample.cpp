@@ -28,7 +28,7 @@ TextRenderSample::~TextRenderSample() {
     NativeImageUtil::FreeNativeImage(&m_RenderImage);
 }
 
-void TextRenderSample::Create() {
+void TextRenderSample::Init() {
     LoadFacesByASCII();
 
     LoadFacesByUnicode(BYTE_ROLLING, sizeof(BYTE_ROLLING)/sizeof(BYTE_ROLLING[0]) - 1);
@@ -82,7 +82,7 @@ void TextRenderSample::Create() {
     glBindTexture(GL_TEXTURE_2D, GL_NONE);
 }
 
-void TextRenderSample::Draw() {
+void TextRenderSample::Draw(int width_, int height_) {
     LOGD("TextRenderSample::Draw()")
     if(m_ProgramObj == GL_NONE) return;
 
@@ -112,8 +112,8 @@ void TextRenderSample::Draw() {
     RenderText(BYTE_ROLLING, sizeof(BYTE_ROLLING)/sizeof(BYTE_ROLLING[0]) - 1, -0.9f, -0.2f, 1.0f, glm::vec3(0.7, 0.4f, 0.2f), viewport);
 }
 
-void TextRenderSample::Shutdown() {
-    GLBaseSample::Shutdown();
+void TextRenderSample::Destroy() {
+    GLSampleBase::Destroy();
 
     glDeleteBuffers(1, &m_VboId);
     glDeleteVertexArrays(1, &m_VaoId);
@@ -139,7 +139,7 @@ void TextRenderSample::LoadImage(NativeImage *pImage) {
 
 void
 TextRenderSample::UpdateTransformMatrix(float rotateX, float rotateY, float scaleX, float scaleY) {
-    GLBaseSample::UpdateTransformMatrix(rotateX, rotateY, scaleX, scaleY);
+    GLSampleBase::UpdateTransformMatrix(rotateX, rotateY, scaleX, scaleY);
     m_AngleX = static_cast<int>(rotateX);
     m_AngleY = static_cast<int>(rotateY);
     m_ScaleX = scaleX;

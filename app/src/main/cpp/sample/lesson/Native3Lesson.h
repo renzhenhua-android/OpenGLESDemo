@@ -1,23 +1,23 @@
 #ifndef OPENGLLESSON_NATIVE3LESSON_H
 #define OPENGLLESSON_NATIVE3LESSON_H
 
-#include <GLBaseSample.h>
+#include <GLSampleBase.h>
 #include "lesson_cube_data.h"
 
-class Native3Lesson : public GLBaseSample {
+class Native3Lesson : public GLSampleBase {
 
 public:
     Native3Lesson();
 
     virtual ~Native3Lesson();
 
-    virtual void Create();
+    virtual void Init();
 
     virtual void Change(int width, int height);
 
-    virtual void Draw();
+    virtual void Draw(int width_, int height_);
 
-    virtual void Shutdown();
+    virtual void Destroy();
 
 private:
     Matrix *mViewMatrix;

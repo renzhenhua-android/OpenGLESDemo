@@ -4,7 +4,7 @@
 
 #pragma once
 #include "Noise3D.h"
-#include <GLBaseSample.h>
+#include <GLSampleBase.h>
 
 // Attribute locations
 #define ATTRIB_LOCATION_POS      0
@@ -14,17 +14,17 @@
 #define NOISE_TABLE_MASK   255
 
 
-class Noise3DRender : public GLBaseSample{
+class Noise3DRender : public GLSampleBase{
 public:
     Noise3DRender() = default;
 
     virtual ~Noise3DRender() = default;
 
-    virtual void Create();
+    virtual void Init();
 
-    virtual void Draw();
+    virtual void Draw(int width_, int height_);
 
-    virtual void Shutdown();
+    virtual void Destroy();
 
 private:
     // Uniform locations

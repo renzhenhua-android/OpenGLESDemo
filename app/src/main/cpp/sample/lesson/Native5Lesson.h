@@ -1,25 +1,25 @@
 #ifndef OPENGLLESSON_NATIVE5LESSON_H
 #define OPENGLLESSON_NATIVE5LESSON_H
 
-#include <GLBaseSample.h>
+#include <GLSampleBase.h>
 
 #define NATIVE_LESSON_FIVE_ATTRIB_LOCATION_POS        0
 #define NATIVE_LESSON_FIVE_ATTRIB_LOCATION_COLOR      1
 
-class Native5Lesson : public GLBaseSample{
+class Native5Lesson : public GLSampleBase{
 
 public:
 
     Native5Lesson();
 
     virtual ~Native5Lesson();
-    virtual void Create();
+    virtual void Init();
 
     virtual void Change(int width, int height);
 
-    virtual void Draw();
+    virtual void Draw(int width_, int height_);
 
-    virtual void Shutdown();
+    virtual void Destroy();
 
     virtual void SwitchBlendingMode();
 

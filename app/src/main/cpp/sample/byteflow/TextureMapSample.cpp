@@ -13,7 +13,7 @@ TextureMapSample::~TextureMapSample() {
     NativeImageUtil::FreeNativeImage(&mRenderImage);
 }
 
-void TextureMapSample::Create() {
+void TextureMapSample::Init() {
     GLUtils::printGLInfo();
 
     // 顶点着色器
@@ -59,7 +59,7 @@ void TextureMapSample::Create() {
     glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
 }
 
-void TextureMapSample::Draw() {
+void TextureMapSample::Draw(int width_, int height_) {
     FUN_BEGIN_TIME("TextureMapSample::Draw()")
         LOGD("TextureMapSample::Draw()")
         if (m_ProgramObj == GL_NONE || mTextureId == GL_NONE) return;
@@ -105,8 +105,8 @@ void TextureMapSample::Draw() {
     FUN_END_TIME("TextureMapSample::Draw()")
 }
 
-void TextureMapSample::Shutdown() {
-    GLBaseSample::Shutdown();
+void TextureMapSample::Destroy() {
+    GLSampleBase::Destroy();
     if (mTextureId) {
         // 删除纹理
         glDeleteTextures(1, &mTextureId);

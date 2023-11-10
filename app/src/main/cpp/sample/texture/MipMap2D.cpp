@@ -5,7 +5,7 @@
 #include <cstdlib>
 #include "MipMap2D.h"
 
-void MipMap2D::Create() {
+void MipMap2D::Init() {
     GLUtils::printGLInfo();
 
     // Main Program
@@ -36,13 +36,13 @@ void MipMap2D::Create() {
     glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
 }
 
-void MipMap2D::Shutdown() {
-    GLBaseSample::Shutdown();
+void MipMap2D::Destroy() {
+    GLSampleBase::Destroy();
     // Delete texture object
     glDeleteTextures(1, &textureId);
 }
 
-void MipMap2D::Draw() {
+void MipMap2D::Draw(int width_, int height_) {
     GLfloat vVertices[] =
             {
                     -0.5f, 0.5f, 0.0f, 1.5f,    // Position 0

@@ -6,7 +6,7 @@
 // 理解YUV  https://blog.csdn.net/weixin_43752854/article/details/84841514
 // 一文掌握 YUV 图像的基本处理  https://blog.csdn.net/Kennethdroid/article/details/94031821
 // OpenGL ES 3.0 开发（三）：YUV 渲染  https://blog.csdn.net/Kennethdroid/article/details/97153407
-#include <GLBaseSample.h>
+#include <GLSampleBase.h>
 #include "NV21TextureMapSample.h"
 
 NV21TextureMapSample::NV21TextureMapSample() {
@@ -32,7 +32,7 @@ void NV21TextureMapSample::LoadImage(NativeImage *pImage) {
     }
 }
 
-void NV21TextureMapSample::Create() {
+void NV21TextureMapSample::Init() {
     GLUtils::printGLInfo();
 
     // 顶点着色器
@@ -62,7 +62,7 @@ void NV21TextureMapSample::Create() {
     glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
 }
 
-void NV21TextureMapSample::Draw() {
+void NV21TextureMapSample::Draw(int width_, int height_) {
     LOGD("NV21TextureMapSample::Draw()")
 
     if(m_ProgramObj == GL_NONE || m_yTextureId == GL_NONE || m_uvTextureId == GL_NONE) return;
@@ -130,8 +130,8 @@ void NV21TextureMapSample::Draw() {
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_SHORT, yuv_indices);
 }
 
-void NV21TextureMapSample::Shutdown() {
-    GLBaseSample::Shutdown();
+void NV21TextureMapSample::Destroy() {
+    GLSampleBase::Destroy();
 
     if (m_yTextureId) {
         // 删除纹理

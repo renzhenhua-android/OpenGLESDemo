@@ -49,7 +49,7 @@ VisualizeAudioSample::~VisualizeAudioSample() {
     }
 }
 
-void VisualizeAudioSample::Create() {
+void VisualizeAudioSample::Init() {
     // 顶点着色器
     VERTEX_SHADER = GLUtils::openTextFile(
             "vertex/vertex_shader_visualize_audio.glsl");
@@ -68,7 +68,7 @@ void VisualizeAudioSample::Create() {
     glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 }
 
-void VisualizeAudioSample::Draw() {
+void VisualizeAudioSample::Draw(int width_, int height_) {
     LOGD("VisualizeAudioSample::Draw()")
 
     if (m_ProgramObj == GL_NONE) return;
@@ -135,13 +135,13 @@ void VisualizeAudioSample::Draw() {
     glDrawArrays(GL_LINES, 0, m_RenderDataSize * 6);
 }
 
-void VisualizeAudioSample::Shutdown() {
+void VisualizeAudioSample::Destroy() {
     std::unique_lock<std::mutex> lock(m_Mutex);
     LOGD("m_Mutex addr = %d", &m_Mutex)
     m_Cond.notify_all();
     lock.unlock();
 
-    GLBaseSample::Shutdown();
+    GLSampleBase::Destroy();
     glDeleteBuffers(2, m_VboIds);
     glDeleteVertexArrays(1, &m_VaoId);
 }
@@ -182,7 +182,7 @@ void VisualizeAudioSample::LoadAudioData(short *buffer, int len) {
 
 void VisualizeAudioSample::UpdateTransformMatrix(float rotateX, float rotateY, float scaleX,
                                                  float scaleY) {
-    GLBaseSample::UpdateTransformMatrix(rotateX, rotateY, scaleX, scaleY);
+    GLSampleBase::UpdateTransformMatrix(rotateX, rotateY, scaleX, scaleY);
     m_AngleX = static_cast<int>(rotateX);
     m_AngleY = static_cast<int>(rotateY);
     m_ScaleX = scaleX;
@@ -191,8 +191,7 @@ void VisualizeAudioSample::UpdateTransformMatrix(float rotateX, float rotateY, f
 
 void
 VisualizeAudioSample::UpdateMVPMatrix(mat4 &mvpMatrix, int angleX, int angleY, float ratio) const {
-    LOGD("VisualizeAudioSample::UpdateMVPMatrix angleX = %d, angleY = %d, ratio = %f", angleX,
-         angleY, ratio)
+    LOGD("VisualizeAudioSample::UpdateMVPMatrix angleX = %d, angleY = %d, ratio = %f", angleX, angleY, ratio)
     angleX = angleX % 360;
     angleY = angleY % 360;
 

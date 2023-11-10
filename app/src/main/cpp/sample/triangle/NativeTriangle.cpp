@@ -26,7 +26,7 @@ static GLfloat vVertices[] = {
         0.5f, -0.5f, 0.0f            // 右下角
 };
 
-void NativeTriangle::Create() {
+void NativeTriangle::Init() {
     GLUtils::printGLInfo();
 
     // Main Program
@@ -46,7 +46,7 @@ void NativeTriangle::Create() {
     glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
 }
 
-void NativeTriangle::Draw() {
+void NativeTriangle::Draw(int width_, int height_) {
     // Clear the color buffer
     // 清除屏幕
     // 在OpenGL ES中，绘图中涉及多种缓冲区类型：颜色、深度、模板。
@@ -105,6 +105,6 @@ void NativeTriangle::Draw() {
     glDisableVertexAttribArray(0);
 }
 
-void NativeTriangle::Shutdown() {
-    GLBaseSample::Shutdown();
+void NativeTriangle::Destroy() {
+    GLSampleBase::Destroy();
 }

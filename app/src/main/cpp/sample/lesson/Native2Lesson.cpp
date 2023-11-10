@@ -35,7 +35,7 @@ Native2Lesson::Native2Lesson() {
     LOGD("Create Native2Lesson instance successful")
 }
 
-void Native2Lesson::Create() {
+void Native2Lesson::Init() {
     LOGD("Native2Lesson Create")
 
     // Use culling to remove back face.
@@ -114,7 +114,7 @@ void Native2Lesson::Change(int width, int height) {
     mProjectionMatrix = Matrix::newFrustum(left, right, bottom, top, near, far);
 }
 
-void Native2Lesson::Draw() {
+void Native2Lesson::Draw(int width_, int height_) {
     // Set the OpenGL viewport to same size as the surface.
 
     glClearColor(0, 0, 0, 1);
@@ -179,8 +179,8 @@ void Native2Lesson::Draw() {
     drawLight();
 }
 
-void Native2Lesson::Shutdown() {
-    GLBaseSample::Shutdown();
+void Native2Lesson::Destroy() {
+    GLSampleBase::Destroy();
     delete mModelMatrix;
     mModelMatrix = nullptr;
 

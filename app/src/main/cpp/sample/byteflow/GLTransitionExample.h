@@ -5,23 +5,23 @@
 #ifndef OPENGLESDEMO_GLTRANSITIONEXAMPLE_H
 #define OPENGLESDEMO_GLTRANSITIONEXAMPLE_H
 
-#include <GLBaseSample.h>
+#include <GLSampleBase.h>
 #include <glm/gtc/matrix_transform.hpp>
 
 #define BF_IMG_NUM    6
 #define BF_LOOP_COUNT 200
 
-class GLTransitionExample : public GLBaseSample {
+class GLTransitionExample : public GLSampleBase {
 public:
     GLTransitionExample(int renderSampleType);
 
     virtual ~GLTransitionExample();
 
-    virtual void Create();
+    virtual void Init();
 
-    virtual void Draw();
+    virtual void Draw(int width_, int height_);
 
-    virtual void Shutdown();
+    virtual void Destroy();
 
     virtual void LoadMultiImageWithIndex(int index, NativeImage *pImage);
 

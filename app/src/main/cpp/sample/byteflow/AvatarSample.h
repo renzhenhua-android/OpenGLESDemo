@@ -6,21 +6,21 @@
 #define OPENGLESDEMO_AVATARSAMPLE_H
 
 #include <glm/gtc/matrix_transform.hpp>
-#include <GLBaseSample.h>
+#include <GLSampleBase.h>
 
 #define RENDER_IMG_NUM 3
 
-class AvatarSample : public GLBaseSample {
+class AvatarSample : public GLSampleBase {
 public:
     AvatarSample();
 
     virtual ~AvatarSample();
 
-    virtual void Create();
+    virtual void Init();
 
-    virtual void Draw();
+    virtual void Draw(int width_, int height_);
 
-    virtual void Shutdown();
+    virtual void Destroy();
 
     virtual void LoadMultiImageWithIndex(int index, NativeImage *pImage);
 

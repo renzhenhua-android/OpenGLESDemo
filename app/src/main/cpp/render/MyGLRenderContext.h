@@ -5,7 +5,7 @@
 #ifndef OPENGLESDEMO_MYGLRENDERCONTEXT_H
 #define OPENGLESDEMO_MYGLRENDERCONTEXT_H
 
-#include <GLBaseSample.h>
+#include <GLSampleBase.h>
 
 class MyGLRenderContext
 {
@@ -48,8 +48,8 @@ public:
 
 private:
     static MyGLRenderContext *m_pContext;
-    GLBaseSample *m_pBeforeSample;
-    GLBaseSample *m_pCurSample;
+    GLSampleBase *m_pBeforeSample;
+    GLSampleBase *m_pCurSample;
 
     static NativeImage getImage(int format, int width, int height, uint8_t *pData) ;
 };

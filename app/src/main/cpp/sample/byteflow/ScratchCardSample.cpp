@@ -89,7 +89,7 @@ ScratchCardSample::~ScratchCardSample() {
     NativeImageUtil::FreeNativeImage(&m_RenderImage);
 }
 
-void ScratchCardSample::Create() {
+void ScratchCardSample::Init() {
     // 顶点着色器
     VERTEX_SHADER = GLUtils::openTextFile(
             "vertex/vertex_shader_coord_system.glsl");
@@ -161,7 +161,7 @@ void ScratchCardSample::Create() {
     glClearColor(0.2f, 0.2f, 0.2f, 1.0);
 }
 
-void ScratchCardSample::Draw() {
+void ScratchCardSample::Draw(int width_, int height_) {
     LOGD("ScratchCardSample::Draw()")
     if (m_ProgramObj == GL_NONE || m_TextureId == GL_NONE) return;
 
@@ -214,8 +214,8 @@ void ScratchCardSample::LoadImage(NativeImage *pImage) {
     }
 }
 
-void ScratchCardSample::Shutdown() {
-    GLBaseSample::Shutdown();
+void ScratchCardSample::Destroy() {
+    GLSampleBase::Destroy();
 
     glDeleteBuffers(2, m_VboIds);
     glDeleteVertexArrays(1, &m_VaoId);
@@ -229,8 +229,7 @@ void ScratchCardSample::Shutdown() {
  * */
 void ScratchCardSample::UpdateMVPMatrix(glm::mat4 &mvpMatrix, int angleX, int angleY,
                                         float ratio) const {
-    LOGD("ScratchCardSample::UpdateMVPMatrix angleX = %d, angleY = %d, ratio = %f", angleX,
-         angleY, ratio)
+    LOGD("ScratchCardSample::UpdateMVPMatrix angleX = %d, angleY = %d, ratio = %f", angleX, angleY, ratio)
     angleX = angleX % 360;
     angleY = angleY % 360;
 
@@ -264,7 +263,7 @@ void ScratchCardSample::UpdateMVPMatrix(glm::mat4 &mvpMatrix, int angleX, int an
 
 void
 ScratchCardSample::UpdateTransformMatrix(float rotateX, float rotateY, float scaleX, float scaleY) {
-    GLBaseSample::UpdateTransformMatrix(rotateX, rotateY, scaleX, scaleY);
+    GLSampleBase::UpdateTransformMatrix(rotateX, rotateY, scaleX, scaleY);
     m_AngleX = static_cast<int>(rotateX);
     m_AngleY = static_cast<int>(rotateY);
     m_ScaleX = scaleX;
@@ -381,7 +380,7 @@ void ScratchCardSample::CalculateMesh(vec2 pre, vec2 cur) {
 }
 
 void ScratchCardSample::SetTouchLocation(float x, float y) {
-    GLBaseSample::SetTouchLocation(x, y);
+    GLSampleBase::SetTouchLocation(x, y);
     if (m_Width * m_Height != 0) {
         if (x == -1) m_bReset = true;
 

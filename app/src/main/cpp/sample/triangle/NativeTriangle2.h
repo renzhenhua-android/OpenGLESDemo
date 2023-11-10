@@ -1,8 +1,8 @@
 #pragma once
 
-#include <GLBaseSample.h>
+#include <GLSampleBase.h>
 
-class NativeTriangle2 : public GLBaseSample {
+class NativeTriangle2 : public GLSampleBase {
 
 #define VERTEX_POS_INDX       0
 #define VERTEX_COLOR_INDX     1
@@ -15,9 +15,9 @@ public:
 
     virtual ~NativeTriangle2() = default;
 
-    virtual void Create();
+    virtual void Init();
 
-    virtual void Draw();
+    virtual void Draw(int width_, int height_);
 
-    virtual void Shutdown();
+    virtual void Destroy();
 };

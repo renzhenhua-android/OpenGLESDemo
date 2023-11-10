@@ -5,7 +5,7 @@
 #include "ParticleSystemTransformFeedBack.h"
 
 
-void ParticleSystemTransformFeedBack::Create() {
+void ParticleSystemTransformFeedBack::Init() {
     LOGD("Create()")
     GLUtils::printGLInfo();
 
@@ -111,7 +111,7 @@ void ParticleSystemTransformFeedBack::initEmitParticles() {
 }
 
 
-void ParticleSystemTransformFeedBack::Draw() {
+void ParticleSystemTransformFeedBack::Draw(int width_, int height_) {
     LOGD("Draw()")
     // 每次更新一下
     update(getDeltaTime());
@@ -157,8 +157,8 @@ void ParticleSystemTransformFeedBack::Draw() {
     glDrawArrays (GL_POINTS, 0, NUM_PARTICLES );
 }
 
-void ParticleSystemTransformFeedBack::Shutdown() {
-    GLBaseSample::Shutdown();
+void ParticleSystemTransformFeedBack::Destroy() {
+    GLSampleBase::Destroy();
     // Delete texture object
     glDeleteTextures ( 1, &textureId );
 

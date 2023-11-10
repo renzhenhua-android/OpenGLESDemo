@@ -5,7 +5,7 @@
 #ifndef OPENGLESDEMO_NV21TEXTUREMAPSAMPLE_H
 #define OPENGLESDEMO_NV21TEXTUREMAPSAMPLE_H
 
-#include <GLBaseSample.h>
+#include <GLSampleBase.h>
 
 #define NV21_TEXTURE_MAP_VERTEX_POS_INDEX              0
 #define NV21_TEXTURE_MAP_VERTEX_TEXTCOORD_INDEX        1
@@ -13,7 +13,7 @@
 #define NV21_TEXTURE_MAP_VERTEX_POS_SIZE               3
 #define NV21_TEXTURE_MAP_VERTEX_TEXTCOORD_SIZE         2
 
-class NV21TextureMapSample : public GLBaseSample {
+class NV21TextureMapSample : public GLSampleBase {
 public:
     NV21TextureMapSample();
 
@@ -21,11 +21,11 @@ public:
 
     virtual void LoadImage(NativeImage *pImage);
 
-    virtual void Create();
+    virtual void Init();
 
-    virtual void Draw();
+    virtual void Draw(int width_, int height_);
 
-    virtual void Shutdown();
+    virtual void Destroy();
 
 private:
     GLuint m_yTextureId;

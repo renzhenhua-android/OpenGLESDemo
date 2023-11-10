@@ -74,7 +74,7 @@ FaceSlenderSample::~FaceSlenderSample() {
     NativeImageUtil::FreeNativeImage(&m_RenderImage);
 }
 
-void FaceSlenderSample::Create() {
+void FaceSlenderSample::Init() {
     // 顶点着色器
     VERTEX_SHADER = GLUtils::openTextFile(
             "vertex/vertex_shader_coord_system.glsl");
@@ -143,7 +143,7 @@ void FaceSlenderSample::Create() {
     glClearColor(0.1, 0.1, 0.1, 0.1);
 }
 
-void FaceSlenderSample::Draw() {
+void FaceSlenderSample::Draw(int width_, int height_) {
     if (m_ProgramObj == GL_NONE) {
         LOGE("FaceSlenderSample::Draw() m_ProgramObj == GL_NONE return")
         return;
@@ -220,8 +220,8 @@ void FaceSlenderSample::Draw() {
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_SHORT, nullptr);
 }
 
-void FaceSlenderSample::Shutdown() {
-    GLBaseSample::Shutdown();
+void FaceSlenderSample::Destroy() {
+    GLSampleBase::Destroy();
 
     glDeleteBuffers(3, m_VboIds);
     glDeleteVertexArrays(1, &m_VaoId);
@@ -240,7 +240,7 @@ void FaceSlenderSample::LoadImage(NativeImage *pImage) {
 
 void
 FaceSlenderSample::UpdateTransformMatrix(float rotateX, float rotateY, float scaleX, float scaleY) {
-    GLBaseSample::UpdateTransformMatrix(rotateX, rotateY, scaleX, scaleY);
+    GLSampleBase::UpdateTransformMatrix(rotateX, rotateY, scaleX, scaleY);
     m_AngleX = static_cast<int>(rotateX);
     m_AngleY = static_cast<int>(rotateY);
     m_ScaleX = scaleX;
@@ -250,8 +250,7 @@ FaceSlenderSample::UpdateTransformMatrix(float rotateX, float rotateY, float sca
 void
 FaceSlenderSample::UpdateMVPMatrix(glm::mat4 &mvpMatrix, int angleX, int angleY,
                                    float ratio) const {
-    LOGD("FaceSlenderSample::UpdateMVPMatrix angleX = %d, angleY = %d, ratio = %f", angleX, angleY,
-         ratio)
+    LOGD("FaceSlenderSample::UpdateMVPMatrix angleX = %d, angleY = %d, ratio = %f", angleX, angleY,ratio)
     angleX = angleX % 360;
     angleY = angleY % 360;
 

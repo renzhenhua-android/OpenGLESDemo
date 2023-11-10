@@ -57,7 +57,7 @@ AvatarSample::~AvatarSample() {
     }
 }
 
-void AvatarSample::Create() {
+void AvatarSample::Init() {
     // 顶点着色器
     VERTEX_SHADER = GLUtils::openTextFile(
             "vertex/vertex_shader_blending.glsl");
@@ -133,7 +133,7 @@ void AvatarSample::Create() {
 }
 
 
-void AvatarSample::Draw() {
+void AvatarSample::Draw(int width_, int height_) {
     LOGD("AvatarSample::Draw()")
 
     if (m_ProgramObj == GL_NONE) return;
@@ -230,8 +230,8 @@ void AvatarSample::LoadMultiImageWithIndex(int index, NativeImage *pImage) {
     }
 }
 
-void AvatarSample::Shutdown() {
-    GLBaseSample::Shutdown();
+void AvatarSample::Destroy() {
+    GLSampleBase::Destroy();
     glDeleteBuffers(3, m_VboIds);
     glDeleteVertexArrays(1, &m_VaoId);
     glDeleteTextures(RENDER_IMG_NUM, m_TextureIds);
@@ -239,8 +239,7 @@ void AvatarSample::Shutdown() {
 
 void AvatarSample::UpdateMVPMatrix(glm::mat4 &mvpMatrix, int angleX, int angleY, float transX,
                                    float transY, float ratio) const {
-    LOGD("AvatarSample::UpdateMVPMatrix angleX = %d, angleY = %d, ratio = %f", angleX, angleY,
-         ratio)
+    LOGD("AvatarSample::UpdateMVPMatrix angleX = %d, angleY = %d, ratio = %f", angleX, angleY, ratio)
     angleX = angleX % 360;
     angleY = angleY % 360;
 

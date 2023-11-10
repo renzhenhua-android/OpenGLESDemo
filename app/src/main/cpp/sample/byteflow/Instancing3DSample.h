@@ -6,19 +6,19 @@
 #define OPENGLESDEMO_INSTANCING3DSAMPLE_H
 
 #include <glm/gtc/matrix_transform.hpp>
-#include <GLBaseSample.h>
+#include <GLSampleBase.h>
 
-class Instancing3DSample : public GLBaseSample {
+class Instancing3DSample : public GLSampleBase {
 public:
     Instancing3DSample();
 
     virtual ~Instancing3DSample();
 
-    virtual void Create();
+    virtual void Init();
 
-    virtual void Draw();
+    virtual void Draw(int width_, int height_);
 
-    virtual void Shutdown();
+    virtual void Destroy();
 
     virtual void LoadImage(NativeImage *pImage);
 

@@ -34,7 +34,7 @@ static GLushort indices[3] = {
 static GLfloat *vtxBuf[2] = {vertexPos, color};
 
 
-void NativeTriangle3::Create() {
+void NativeTriangle3::Init() {
     GLUtils::printGLInfo();
 
     // 顶点着色器
@@ -58,7 +58,7 @@ void NativeTriangle3::Create() {
     glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
 }
 
-void NativeTriangle3::Draw() {
+void NativeTriangle3::Draw(int width_, int height_) {
     // Clear the color buffer
     // 清除屏幕
     // 在OpenGL ES中，绘图中涉及多种缓冲区类型：颜色、深度、模板。
@@ -181,7 +181,7 @@ void NativeTriangle3::Draw() {
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
 
-void NativeTriangle3::Shutdown() {
-    GLBaseSample::Shutdown();
+void NativeTriangle3::Destroy() {
+    GLSampleBase::Destroy();
     glDeleteBuffers(3, &vboIds[0]);
 }

@@ -2,7 +2,7 @@
 #include "NativeTriangleMapBuffers.h"
 
 // 可以参考这篇讲解： https://learnopengl-cn.github.io/01%20Getting%20started/04%20Hello%20Triangle/
-void NativeTriangleMapBuffers::Create() {
+void NativeTriangleMapBuffers::Init() {
     GLUtils::printGLInfo();
 
     // 顶点着色器
@@ -25,7 +25,7 @@ void NativeTriangleMapBuffers::Create() {
     glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
 }
 
-void NativeTriangleMapBuffers::Draw() {
+void NativeTriangleMapBuffers::Draw(int width_, int height_) {
     // 3 vertices, with (x,y,z) ,(r, g, b, a)  per-vertex
     GLfloat vertices[3 * (VERTEX_POS_SIZE + VERTEX_COLOR_SIZE)] =
             {
@@ -176,8 +176,8 @@ void NativeTriangleMapBuffers::DrawPrimitiveWithVBOsMapBuffers(
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
 
-void NativeTriangleMapBuffers::Shutdown() {
-    GLBaseSample::Shutdown();
+void NativeTriangleMapBuffers::Destroy() {
+    GLSampleBase::Destroy();
 
     glDeleteBuffers(2, &vboIds[0]);
 }

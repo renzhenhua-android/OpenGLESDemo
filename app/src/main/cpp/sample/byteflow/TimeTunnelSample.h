@@ -6,9 +6,9 @@
 #define OPENGLESDEMO_TIMETUNNELSAMPLE_H
 
 #include <glm/gtc/matrix_transform.hpp>
-#include <GLBaseSample.h>
+#include <GLSampleBase.h>
 
-class TimeTunnelSample : public GLBaseSample {
+class TimeTunnelSample : public GLSampleBase {
 public:
     TimeTunnelSample();
 
@@ -16,11 +16,11 @@ public:
 
     virtual void LoadImage(NativeImage *pImage);
 
-    virtual void Create();
+    virtual void Init();
 
-    virtual void Draw();
+    virtual void Draw(int width_, int height_);
 
-    virtual void Shutdown();
+    virtual void Destroy();
 
     void UpdateMVPMatrix(glm::mat4 &mvpMatrix, int angleX, int angleY, float ratio) const;
 

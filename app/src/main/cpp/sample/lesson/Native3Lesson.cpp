@@ -35,7 +35,7 @@ Native3Lesson::Native3Lesson() {
 
 Native3Lesson::~Native3Lesson() = default;
 
-void Native3Lesson::Create() {
+void Native3Lesson::Init() {
     LOGD("Native3Lesson Create")
 
     // Use culling to remove back face.
@@ -114,7 +114,7 @@ void Native3Lesson::Change(int width, int height) {
     mProjectionMatrix = Matrix::newFrustum(left, right, bottom, top, near, far);
 }
 
-void Native3Lesson::Draw() {
+void Native3Lesson::Draw(int width_, int height_) {
 // Set the OpenGL viewport to same size as the surface.
 
     glClearColor(0, 0, 0, 1);
@@ -280,8 +280,8 @@ void Native3Lesson::drawLight() {
     glDrawArrays(GL_POINTS, 0, 1);
 }
 
-void Native3Lesson::Shutdown() {
-    GLBaseSample::Shutdown();
+void Native3Lesson::Destroy() {
+    GLSampleBase::Destroy();
     delete mModelMatrix;
     mModelMatrix = nullptr;
     delete mViewMatrix;

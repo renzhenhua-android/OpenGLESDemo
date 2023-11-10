@@ -6,20 +6,20 @@
 #define OPENGLESDEMO_PORTRAITSTAYCOLOREXAMPLE_H
 
 #include <glm/gtc/matrix_transform.hpp>
-#include <GLBaseSample.h>
+#include <GLSampleBase.h>
 
-class PortraitStayColorExample : public GLBaseSample {
+class PortraitStayColorExample : public GLSampleBase {
 
 public:
     PortraitStayColorExample();
 
     virtual ~PortraitStayColorExample();
 
-    virtual void Create();
+    virtual void Init();
 
-    virtual void Draw();
+    virtual void Draw(int width_, int height_);
 
-    virtual void Shutdown();
+    virtual void Destroy();
 
     virtual void LoadImage(NativeImage *pImage);
 

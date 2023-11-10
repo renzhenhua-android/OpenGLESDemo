@@ -99,13 +99,13 @@ MyGLRenderContext::~MyGLRenderContext() {
     LOGD("MyGLRenderContext::~MyGLRenderContext")
 
     if (m_pCurSample) {
-        m_pCurSample->Shutdown();
+        m_pCurSample->Destroy();
         delete m_pCurSample;
         m_pCurSample = nullptr;
     }
 
     if (m_pBeforeSample) {
-        m_pBeforeSample->Shutdown();
+        m_pBeforeSample->Destroy();
         delete m_pBeforeSample;
         m_pBeforeSample = nullptr;
     }
@@ -379,13 +379,13 @@ void MyGLRenderContext::OnSurfaceCreated(JNIEnv *env, jobject assetManager) {
     GLUtils::setEnvAndAssetManager(env, assetManager);
 
     if (m_pBeforeSample) {
-        m_pBeforeSample->Shutdown();
+        m_pBeforeSample->Destroy();
         delete m_pBeforeSample;
         m_pBeforeSample = nullptr;
     }
 
     if (m_pCurSample) {
-        m_pCurSample->Create();
+        m_pCurSample->Init();
     }
 }
 
@@ -398,7 +398,7 @@ void MyGLRenderContext::OnSurfaceChanged(int width, int height) {
 
 void MyGLRenderContext::OnDrawFrame() {
     if (m_pCurSample) {
-        m_pCurSample->Draw();
+        m_pCurSample->Draw(0,0);
     }
 }
 

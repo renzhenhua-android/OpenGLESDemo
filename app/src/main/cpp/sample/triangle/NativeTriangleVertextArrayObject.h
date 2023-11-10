@@ -1,6 +1,6 @@
 #pragma once
 
-#include <GLBaseSample.h>
+#include <GLSampleBase.h>
 
 #define VERTEX_POS_SIZE       3 // x, y and z
 #define VERTEX_COLOR_SIZE     4 // r, g, b, and a
@@ -10,17 +10,17 @@
 
 #define VERTEX_STRIDE         ( sizeof(GLfloat) * ( VERTEX_POS_SIZE + VERTEX_COLOR_SIZE ) )
 
-class NativeTriangleVAO : public GLBaseSample {
+class NativeTriangleVAO : public GLSampleBase {
 public:
     NativeTriangleVAO() = default;
 
     virtual ~NativeTriangleVAO() = default;
 
-    virtual void Create();
+    virtual void Init();
 
-    virtual void Draw();
+    virtual void Draw(int width_, int height_);
 
-    virtual void Shutdown();
+    virtual void Destroy();
 
 private:
     // VertexBufferObject Ids

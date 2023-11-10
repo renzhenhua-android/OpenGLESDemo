@@ -1,6 +1,6 @@
 #include <cstdlib>
 #include <cmath>
-#include <GLBaseSample.h>
+#include <GLSampleBase.h>
 
 #define NOISE_TABLE_MASK   255
 

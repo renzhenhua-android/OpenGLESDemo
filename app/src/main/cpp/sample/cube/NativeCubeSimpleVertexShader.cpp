@@ -3,7 +3,7 @@
 
 #include "NativeCubeSimpleVertexShader.h"
 
-void NativeCubeSimpleVertexShader::Create() {
+void NativeCubeSimpleVertexShader::Init() {
     GLUtils::printGLInfo();
 
     // 顶点着色器
@@ -49,7 +49,7 @@ void NativeCubeSimpleVertexShader::Create() {
     glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
 }
 
-void NativeCubeSimpleVertexShader::Draw() {
+void NativeCubeSimpleVertexShader::Draw(int width_, int height_) {
     // 每次绘制之前先update一下
     update(getDeltaTime());
 
@@ -124,8 +124,8 @@ void NativeCubeSimpleVertexShader::update(float deltaTime) {
     esMatrixMultiply(&mvpMatrix, &modelview, &perspective);
 }
 
-void NativeCubeSimpleVertexShader::Shutdown() {
-    GLBaseSample::Shutdown();
+void NativeCubeSimpleVertexShader::Destroy() {
+    GLSampleBase::Destroy();
     if (vertices != nullptr) {
         free(vertices);
     }

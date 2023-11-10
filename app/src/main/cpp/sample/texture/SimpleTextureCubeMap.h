@@ -3,23 +3,23 @@
 //
 #pragma once
 
-#include <GLBaseSample.h>
+#include <GLSampleBase.h>
 
 #define SIMPLE_TEXTURE_CUBE_MAP_VERTEX_POS_INDEX            0
 #define SIMPLE_TEXTURE_CUBE_MAP_VERTEX_NORMAL_INDEX         1
 
-class SimpleTextureCubeMap : public GLBaseSample {
+class SimpleTextureCubeMap : public GLSampleBase {
 
 public:
     SimpleTextureCubeMap() = default;
 
     virtual ~SimpleTextureCubeMap() = default;
 
-    virtual void Create();
+    virtual void Init();
 
-    virtual void Draw();
+    virtual void Draw(int width_, int height_);
 
-    virtual void Shutdown();
+    virtual void Destroy();
 
 private:
     // Sampler location

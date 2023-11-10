@@ -5,19 +5,19 @@
 #ifndef OPENGLESDEMO_GREENSCREENMATTING_H
 #define OPENGLESDEMO_GREENSCREENMATTING_H
 
-#include <GLBaseSample.h>
-class GreenScreenMatting : public GLBaseSample {
+#include <GLSampleBase.h>
+class GreenScreenMatting : public GLSampleBase {
 
 public:
     GreenScreenMatting();
 
     virtual ~GreenScreenMatting();
 
-    virtual void Create();
+    virtual void Init();
 
-    virtual void Draw();
+    virtual void Draw(int width_, int height_);
 
-    virtual void Shutdown();
+    virtual void Destroy();
 
     virtual void LoadImage(NativeImage *pImage);
 

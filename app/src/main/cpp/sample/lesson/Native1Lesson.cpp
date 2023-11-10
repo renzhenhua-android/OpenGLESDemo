@@ -52,7 +52,7 @@ Native1Lesson::Native1Lesson() {
 
 Native1Lesson::~Native1Lesson() = default;
 
-void Native1Lesson::Create() {
+void Native1Lesson::Init() {
 	GLUtils::printGLInfo();
 
 	// 顶点着色器
@@ -107,7 +107,7 @@ void Native1Lesson::Change(int width, int height) {
 	mProjectionMatrix = Matrix::newFrustum(left, right, bottom, top, near, far);
 }
 
-void Native1Lesson::Draw() {
+void Native1Lesson::Draw(int width_, int height_) {
 	glClearColor(0.5F, 0.5F, 0.5F, 0.5F);
 	glClear(GL_COLOR_BUFFER_BIT);
 	GLUtils::checkGlError("glClear");
@@ -189,8 +189,8 @@ void Native1Lesson::drawTriangle(GLfloat* vertices,
 	glDisableVertexAttribArray(VERTEX_COLOR_INDX);
 }
 
-void Native1Lesson::Shutdown() {
-	GLBaseSample::Shutdown();
+void Native1Lesson::Destroy() {
+	GLSampleBase::Destroy();
 	if(mModelMatrix){
 		delete mModelMatrix;
 		mModelMatrix = nullptr;

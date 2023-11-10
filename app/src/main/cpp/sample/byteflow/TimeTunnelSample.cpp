@@ -31,7 +31,7 @@ TimeTunnelSample::~TimeTunnelSample() {
     NativeImageUtil::FreeNativeImage(&m_RenderImage);
 }
 
-void TimeTunnelSample::Create() {
+void TimeTunnelSample::Init() {
 //顶点坐标
     GLfloat vVertices[] = {
             -1.0f, -1.0f, 0.0f,
@@ -174,7 +174,7 @@ void TimeTunnelSample::LoadImage(NativeImage *pImage) {
     }
 }
 
-void TimeTunnelSample::Draw() {
+void TimeTunnelSample::Draw(int width_, int height_) {
 // 离屏渲染
     //glPixelStorei(GL_UNPACK_ALIGNMENT,1);
     glClear(GL_STENCIL_BUFFER_BIT | GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -222,8 +222,8 @@ void TimeTunnelSample::Draw() {
     m_FrameIndex++;
 }
 
-void TimeTunnelSample::Shutdown() {
-    GLBaseSample::Shutdown();
+void TimeTunnelSample::Destroy() {
+    GLSampleBase::Destroy();
 
     if (m_FboProgramObj)
     {

@@ -6,22 +6,22 @@
 #define OPENGLESDEMO_BASESHADERTOYSIMPLESAMPLE_H
 
 #include <glm/gtc/matrix_transform.hpp>
-#include <GLBaseSample.h>
+#include <GLSampleBase.h>
 
 #define MAIN_SEQUENCE_STAR_RENDER_IMG_NUM 4
 
-class BaseShaderToySimpleSample : public GLBaseSample {
+class BaseShaderToySimpleSample : public GLSampleBase {
 
 public:
     BaseShaderToySimpleSample(int renderSampleType);
 
     virtual ~BaseShaderToySimpleSample();
 
-    virtual void Create();
+    virtual void Init();
 
-    virtual void Draw();
+    virtual void Draw(int width_, int height_);
 
-    virtual void Shutdown();
+    virtual void Destroy();
 
     virtual void LoadMultiImageWithIndex(int index, NativeImage *pImage);
 

@@ -56,7 +56,7 @@ RotaryHeadSample::~RotaryHeadSample() {
 
 }
 
-void RotaryHeadSample::Create() {
+void RotaryHeadSample::Init() {
     // 顶点着色器
     VERTEX_SHADER = GLUtils::openTextFile(
             "vertex/vertex_shader_big_head.glsl");
@@ -123,7 +123,7 @@ void RotaryHeadSample::Create() {
     glClearColor(0.1, 0.1, 0.1, 0.1);
 }
 
-void RotaryHeadSample::Draw() {
+void RotaryHeadSample::Draw(int width_, int height_) {
     if (m_ProgramObj == GL_NONE) {
         LOGE("FaceSlenderSample::Draw() m_ProgramObj == GL_NONE return")
         return;
@@ -174,10 +174,10 @@ void RotaryHeadSample::Draw() {
     GLUtils::setFloat(m_ProgramObj, "u_type", 1);
 }
 
-void RotaryHeadSample::Shutdown() {
-    GLBaseSample::Shutdown();
+void RotaryHeadSample::Destroy() {
+    GLSampleBase::Destroy();
 
-    LOGD("RotaryHeadSample::Shutdown()")
+    LOGD("RotaryHeadSample::Destroy()")
     glDeleteBuffers(2, m_VboIds);
     glDeleteVertexArrays(1, &m_VaoId);
     glDeleteTextures(1, &m_TextureId);
@@ -196,7 +196,7 @@ void RotaryHeadSample::LoadImage(NativeImage *pImage) {
 
 void
 RotaryHeadSample::UpdateTransformMatrix(float rotateX, float rotateY, float scaleX, float scaleY) {
-    GLBaseSample::UpdateTransformMatrix(rotateX, rotateY, scaleX, scaleY);
+    GLSampleBase::UpdateTransformMatrix(rotateX, rotateY, scaleX, scaleY);
     m_AngleX = static_cast<int>(rotateX);
     m_AngleY = static_cast<int>(rotateY);
     m_ScaleX = scaleX;
@@ -204,8 +204,7 @@ RotaryHeadSample::UpdateTransformMatrix(float rotateX, float rotateY, float scal
 }
 
 void RotaryHeadSample::UpdateMVPMatrix(mat4 &mvpMatrix, int angleX, int angleY, float ratio) const {
-    LOGD("RotaryHeadSample::UpdateMVPMatrix angleX = %d, angleY = %d, ratio = %f", angleX, angleY,
-         ratio)
+    LOGD("RotaryHeadSample::UpdateMVPMatrix angleX = %d, angleY = %d, ratio = %f", angleX, angleY, ratio)
     angleX = angleX % 360;
     angleY = angleY % 360;
 
@@ -243,8 +242,7 @@ void RotaryHeadSample::CalculateMesh(float rotaryAngle) {
 //        inputPoint = RotaryKeyPoint(inputPoint, rotaryAngle);
         m_KeyPoints[i] = RotaryKeyPoint(inputPoint, rotaryAngle);
         m_KeyPointsInts[i] = CalculateIntersection(inputPoint, centerPoint);
-        LOGD("RotaryHeadSample::CalculateMesh index=%d, input[x,y]=[%f, %f], interscet[x, y]=[%f, %f]", i,
-                m_KeyPoints[i].x, m_KeyPoints[i].y, m_KeyPointsInts[i].x, m_KeyPointsInts[i].y)
+        LOGD("RotaryHeadSample::CalculateMesh index=%d, input[x,y]=[%f, %f], interscet[x, y]=[%f, %f]", i,m_KeyPoints[i].x, m_KeyPoints[i].y, m_KeyPointsInts[i].x, m_KeyPointsInts[i].y)
     }
 
     for (int i = 0; i < KEY_POINTS_COUNT - 1; ++i) {

@@ -38,7 +38,7 @@ static GLfloat malletVertices[] = {
         0.0f, 0.4f, 1.0f, 0.0f, 0.0f
 };
 
-void AirHockeySample::Create() {
+void AirHockeySample::Init() {
     //==================================== TABLE =================================================//
     // 顶点着色器
     VERTEX_SHADER = GLUtils::openTextFile(
@@ -118,7 +118,7 @@ void AirHockeySample::Create() {
 }
 
 void AirHockeySample::Change(int width, int height) {
-    GLBaseSample::Change(width, height);
+    GLSampleBase::Change(width, height);
     aspectRatio = m_Width > m_Height
                   ? (float) m_Width / (float) m_Height
                   : (float) m_Height / (float) m_Width;
@@ -141,7 +141,7 @@ void AirHockeySample::Change(int width, int height) {
     m_MVPMatrix = mProjection * mModel;
 }
 
-void AirHockeySample::Draw() {
+void AirHockeySample::Draw(int width_, int height_) {
     // 清空缓冲区: STENCIL_BUFFER、COLOR_BUFFER、DEPTH_BUFFER
 //    glClear(GL_STENCIL_BUFFER_BIT | GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glClear(GL_COLOR_BUFFER_BIT);
@@ -171,7 +171,7 @@ void AirHockeySample::Draw() {
     glDisableVertexAttribArray(MALLET_VERTEX_COLOR_INDX);
 }
 
-void AirHockeySample::Shutdown() {
+void AirHockeySample::Destroy() {
     // Delete program object
     GLUtils::DeleteProgram(m_ProgramObj);
     GLUtils::DeleteProgram(m_MalletProgramObj);

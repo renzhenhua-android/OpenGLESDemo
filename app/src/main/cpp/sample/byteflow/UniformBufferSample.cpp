@@ -55,7 +55,7 @@ UniformBufferSample::~UniformBufferSample() {
     NativeImageUtil::FreeNativeImage(&m_RenderImage);
 }
 
-void UniformBufferSample::Create() {
+void UniformBufferSample::Init() {
     // 顶点着色器
     VERTEX_SHADER = GLUtils::openTextFile(
             "vertex/vertex_shader_ubo.glsl");
@@ -150,7 +150,7 @@ void UniformBufferSample::LoadImage(NativeImage *pImage) {
     }
 }
 
-void UniformBufferSample::Draw() {
+void UniformBufferSample::Draw(int width_, int height_) {
     LOGD("UniformBufferSample::Draw()")
     if (m_ProgramObj == GL_NONE || m_TextureId == GL_NONE) return;
 
@@ -181,8 +181,8 @@ void UniformBufferSample::Draw() {
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_SHORT, nullptr);
 }
 
-void UniformBufferSample::Shutdown() {
-    GLBaseSample::Shutdown();
+void UniformBufferSample::Destroy() {
+    GLSampleBase::Destroy();
 
     glDeleteBuffers(3, m_VboIds);
     glDeleteVertexArrays(1, &m_VaoId);
@@ -191,7 +191,7 @@ void UniformBufferSample::Shutdown() {
 
 void UniformBufferSample::UpdateTransformMatrix(float rotateX, float rotateY, float scaleX,
                                                 float scaleY) {
-    GLBaseSample::UpdateTransformMatrix(rotateX, rotateY, scaleX, scaleY);
+    GLSampleBase::UpdateTransformMatrix(rotateX, rotateY, scaleX, scaleY);
     m_AngleX = static_cast<int>(rotateX);
     m_AngleY = static_cast<int>(rotateY);
     m_ScaleX = scaleX;
@@ -200,8 +200,7 @@ void UniformBufferSample::UpdateTransformMatrix(float rotateX, float rotateY, fl
 
 void UniformBufferSample::UpdateMVPMatrix(glm::mat4 &mvpMatrix, int angleX, int angleY,
                                           float ratio) {
-    LOGD("UniformBufferSample::UpdateMVPMatrix angleX = %d, angleY = %d, ratio = %f", angleX,
-         angleY, ratio)
+    LOGD("UniformBufferSample::UpdateMVPMatrix angleX = %d, angleY = %d, ratio = %f", angleX, angleY, ratio)
     angleX = angleX % 360;
     angleY = angleY % 360;
 

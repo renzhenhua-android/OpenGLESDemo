@@ -6,25 +6,25 @@
 #define OPENGLESDEMO_AIRHOCKEYSAMPLE_H
 
 #include <glm/gtc/matrix_transform.hpp>
-#include <GLBaseSample.h>
+#include <GLSampleBase.h>
 
 using namespace glm;
 
-class AirHockeySample : public GLBaseSample {
+class AirHockeySample : public GLSampleBase {
 public:
     AirHockeySample() = default;
 
     virtual ~AirHockeySample() = default;
 
-    virtual void Create();
+    virtual void Init();
 
     virtual void Change(int width, int height);
 
     virtual void LoadImage(NativeImage *pImage);
 
-    virtual void Draw();
+    virtual void Draw(int width_, int height_);
 
-    virtual void Shutdown();
+    virtual void Destroy();
 
 private:
     GLuint m_TextureId;

@@ -7,7 +7,7 @@ Native5Lesson::Native5Lesson() :
 
 Native5Lesson::~Native5Lesson() = default;
 
-void Native5Lesson::Create() {
+void Native5Lesson::Init() {
 
     // Set the background clear color to black
     glClearColor(0, 0, 0, 0);
@@ -83,7 +83,7 @@ void Native5Lesson::Change(int width, int height) {
     mProjectionMatrix = Matrix::newFrustum(left, right, bottom, top, near, far);
 }
 
-void Native5Lesson::Draw() {
+void Native5Lesson::Draw(int width_, int height_) {
 
     if (mBending) {
         glClear(GL_COLOR_BUFFER_BIT);
@@ -238,8 +238,8 @@ void Native5Lesson::SwitchBlendingMode() {
     }
 }
 
-void Native5Lesson::Shutdown() {
-    GLBaseSample::Shutdown();
+void Native5Lesson::Destroy() {
+    GLSampleBase::Destroy();
     delete mCubePositionData;
     mCubePositionData = nullptr;
 

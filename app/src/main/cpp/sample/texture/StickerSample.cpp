@@ -57,7 +57,7 @@ StickerSample::~StickerSample() {
     }
 }
 
-void StickerSample::Create() {
+void StickerSample::Init() {
     GLUtils::printGLInfo();
 
     // 顶点着色器
@@ -152,7 +152,7 @@ void StickerSample::LoadImage(NativeImage *pImage) {
 }
 
 void StickerSample::LoadMultiImageWithIndex(int index, NativeImage *pImage) {
-    GLBaseSample::LoadMultiImageWithIndex(index, pImage);
+    GLSampleBase::LoadMultiImageWithIndex(index, pImage);
     LOGD("StickerSample::LoadImage index=%d, pImage = %p", index, pImage->ppPlane[0])
     if (pImage) {
         m_StickerRenderImages[index].width = pImage->width;
@@ -162,7 +162,7 @@ void StickerSample::LoadMultiImageWithIndex(int index, NativeImage *pImage) {
     }
 }
 
-void StickerSample::Draw() {
+void StickerSample::Draw(int width_, int height_) {
     LOGD("StickerSample::Draw()")
 
     if (m_ProgramObj == GL_NONE) return;
@@ -240,8 +240,8 @@ void StickerSample::Draw() {
     glDisable(GL_BLEND);
 }
 
-void StickerSample::Shutdown() {
-    GLBaseSample::Shutdown();
+void StickerSample::Destroy() {
+    GLSampleBase::Destroy();
     glDeleteBuffers(3, m_VboIds);
     glDeleteVertexArrays(1, &m_VaoId);
     if (m_TextureId) {
@@ -255,7 +255,7 @@ void StickerSample::Shutdown() {
 
 void
 StickerSample::UpdateTransformMatrix(float rotateX, float rotateY, float scaleX, float scaleY) {
-    GLBaseSample::UpdateTransformMatrix(rotateX, rotateY, scaleX, scaleY);
+    GLSampleBase::UpdateTransformMatrix(rotateX, rotateY, scaleX, scaleY);
     m_AngleX = static_cast<int>(rotateX);
     m_AngleY = static_cast<int>(rotateY);
     m_ScaleX = scaleX;
@@ -269,8 +269,7 @@ StickerSample::UpdateTransformMatrix(float rotateX, float rotateY, float scaleX,
  * */
 void StickerSample::UpdateMVPMatrix(glm::mat4 &mvpMatrix, int angleX, int angleY,
                                     float scale, glm::vec3 transVec3, float ratio) const {
-    LOGD("StickerSample::UpdateMVPMatrix angleX = %d, angleY = %d, ratio = %f", angleX, angleY,
-         ratio)
+    LOGD("StickerSample::UpdateMVPMatrix angleX = %d, angleY = %d, ratio = %f", angleX, angleY,ratio)
     angleX = angleX % 360;
     angleY = angleY % 360;
 

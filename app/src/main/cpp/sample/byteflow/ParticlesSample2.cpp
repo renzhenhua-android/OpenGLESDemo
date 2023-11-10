@@ -42,7 +42,7 @@ void ParticlesSample2::LoadImage(NativeImage *pImage) {
     }
 }
 
-void ParticlesSample2::Create() {
+void ParticlesSample2::Init() {
     //Create RGBA texture
     glGenTextures(1, &m_TextureId);
     glBindTexture(GL_TEXTURE_2D, m_TextureId);
@@ -132,7 +132,7 @@ void ParticlesSample2::Create() {
     glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
 }
 
-void ParticlesSample2::Draw() {
+void ParticlesSample2::Draw(int width_, int height_) {
     LOGD("ParticlesSample::Draw()")
     if (m_ProgramObj == GL_NONE || m_TextureId == GL_NONE) return;
 
@@ -160,8 +160,8 @@ void ParticlesSample2::Draw() {
     glDrawArraysInstanced(GL_TRIANGLES, 0, 36, particleCount);
 }
 
-void ParticlesSample2::Shutdown() {
-    GLBaseSample::Shutdown();
+void ParticlesSample2::Destroy() {
+    GLSampleBase::Destroy();
 
     glDeleteProgram(m_ProgramObj);
     glDeleteVertexArrays(1, &m_VaoId);
@@ -174,8 +174,7 @@ void ParticlesSample2::Shutdown() {
 
 void
 ParticlesSample2::UpdateMVPMatrix(glm::mat4 &mvpMatrix, int angleX, int angleY, float ratio) const {
-    LOGD("ParticlesSample::UpdateMVPMatrix angleX = %d, angleY = %d, ratio = %f", angleX,
-         angleY, ratio)
+    LOGD("ParticlesSample::UpdateMVPMatrix angleX = %d, angleY = %d, ratio = %f", angleX, angleY, ratio)
     angleX = angleX % 360;
     angleY = angleY % 360;
 
@@ -207,7 +206,7 @@ ParticlesSample2::UpdateMVPMatrix(glm::mat4 &mvpMatrix, int angleX, int angleY, 
 
 void
 ParticlesSample2::UpdateTransformMatrix(float rotateX, float rotateY, float scaleX, float scaleY) {
-    GLBaseSample::UpdateTransformMatrix(rotateX, rotateY, scaleX, scaleY);
+    GLSampleBase::UpdateTransformMatrix(rotateX, rotateY, scaleX, scaleY);
     m_AngleX = static_cast<int>(rotateX);
     m_AngleY = static_cast<int>(rotateY);
     m_ScaleX = scaleX;

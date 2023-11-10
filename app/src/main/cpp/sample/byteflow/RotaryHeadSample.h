@@ -6,7 +6,7 @@
 #define OPENGLESDEMO_ROTARYHEADSAMPLE_H
 
 #include <glm/gtc/matrix_transform.hpp>
-#include <GLBaseSample.h>
+#include <GLSampleBase.h>
 
 #define TRIANGLE_COUNT           32
 #define KEY_POINTS_COUNT         9
@@ -14,17 +14,17 @@
 // 因为要用到太多glm的东西，所以使用glm命名空间
 using namespace glm;
 
-class RotaryHeadSample : public GLBaseSample {
+class RotaryHeadSample : public GLSampleBase {
 public:
     RotaryHeadSample();
 
     virtual ~RotaryHeadSample();
 
-    virtual void Create();
+    virtual void Init();
 
-    virtual void Draw();
+    virtual void Draw(int width_, int height_);
 
-    virtual void Shutdown();
+    virtual void Destroy();
 
     virtual void LoadImage(NativeImage *pImage);
 

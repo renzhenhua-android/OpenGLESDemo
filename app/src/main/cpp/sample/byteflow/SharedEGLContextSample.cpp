@@ -77,7 +77,7 @@ void SharedEGLContextSample::LoadImage(NativeImage *pImage) {
     }
 }
 
-void SharedEGLContextSample::Create() {
+void SharedEGLContextSample::Init() {
     // 顶点着色器
     VERTEX_SHADER = GLUtils::openTextFile(
             "vertex/vertex_shader_texture_map.glsl");
@@ -184,7 +184,7 @@ void SharedEGLContextSample::Create() {
 // 新线程渲染结束后会调用 OnAsyncRenderDone 函数通知主线程进行上屏渲染。
 
 // 需要注意的是：多线程渲染要确保纹理等共享资源不会被同时访问，否则会导致渲染出错。
-void SharedEGLContextSample::Draw() {
+void SharedEGLContextSample::Draw(int width_, int height_) {
     LOGD("SharedEGLContextSample::Draw")
     // 清空缓冲区: STENCIL_BUFFER、COLOR_BUFFER
     glClear(GL_STENCIL_BUFFER_BIT | GL_COLOR_BUFFER_BIT );
@@ -224,11 +224,11 @@ void SharedEGLContextSample::OnAsyncRenderDone(void *callback, int fboTexId) {
     ctx->m_Cond.notify_all();
 }
 
-void SharedEGLContextSample::Shutdown() {
+void SharedEGLContextSample::Destroy() {
     GLRenderLooper::GetInstance()->postMessage(MSG_SurfaceDestroyed);
     GLRenderLooper::ReleaseInstance();
 
-    GLBaseSample::Shutdown();
+    GLSampleBase::Destroy();
 
     if (m_FboProgramObj) {
         glDeleteProgram(m_FboProgramObj);

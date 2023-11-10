@@ -6,21 +6,21 @@
 #define OPENGLESDEMO_FBOBLITSAMPLE_H
 
 #include <glm/gtc/matrix_transform.hpp>
-#include <GLBaseSample.h>
+#include <GLSampleBase.h>
 
 #define ATTACHMENT_NUM 4
 
-class FBOBlitSample : public GLBaseSample {
+class FBOBlitSample : public GLSampleBase {
 public:
     FBOBlitSample();
 
     virtual ~FBOBlitSample();
 
-    virtual void Create();
+    virtual void Init();
 
-    virtual void Draw();
+    virtual void Draw(int width_, int height_);
 
-    virtual void Shutdown();
+    virtual void Destroy();
 
     virtual void LoadImage(NativeImage *pImage);
 

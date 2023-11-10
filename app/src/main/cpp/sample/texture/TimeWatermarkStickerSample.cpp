@@ -49,7 +49,7 @@ TimeWatermarkStickerSample::~TimeWatermarkStickerSample() {
     NativeImageUtil::FreeNativeImage(&m_StickerRenderImage);
 }
 
-void TimeWatermarkStickerSample::Create() {
+void TimeWatermarkStickerSample::Init() {
     GLUtils::printGLInfo();
 
     // 顶点着色器
@@ -131,7 +131,7 @@ void TimeWatermarkStickerSample::LoadImage(NativeImage *pImage) {
 }
 
 void TimeWatermarkStickerSample::LoadMultiImageWithIndex(int index, NativeImage *pImage) {
-    GLBaseSample::LoadMultiImageWithIndex(index, pImage);
+    GLSampleBase::LoadMultiImageWithIndex(index, pImage);
     LOGD("TimeWatermarkStickerSample::LoadImage index=%d, pImage = %p", index, pImage->ppPlane[0])
     if (pImage && index == 0) {
         m_StickerRenderImage.width = pImage->width;
@@ -141,7 +141,7 @@ void TimeWatermarkStickerSample::LoadMultiImageWithIndex(int index, NativeImage 
     }
 }
 
-void TimeWatermarkStickerSample::Draw() {
+void TimeWatermarkStickerSample::Draw(int width_, int height_) {
     LOGD("TimeWatermarkStickerSample::Draw()")
 
     if (m_ProgramObj == GL_NONE) return;
@@ -223,8 +223,8 @@ void TimeWatermarkStickerSample::Draw() {
     glDisable(GL_BLEND);
 }
 
-void TimeWatermarkStickerSample::Shutdown() {
-    GLBaseSample::Shutdown();
+void TimeWatermarkStickerSample::Destroy() {
+    GLSampleBase::Destroy();
     glDeleteBuffers(3, m_VboIds);
     glDeleteVertexArrays(1, &m_VaoId);
     if (m_TextureId) {
@@ -242,7 +242,7 @@ void TimeWatermarkStickerSample::Shutdown() {
 
 void
 TimeWatermarkStickerSample::UpdateTransformMatrix(float rotateX, float rotateY, float scaleX, float scaleY) {
-    GLBaseSample::UpdateTransformMatrix(rotateX, rotateY, scaleX, scaleY);
+    GLSampleBase::UpdateTransformMatrix(rotateX, rotateY, scaleX, scaleY);
     m_AngleX = static_cast<int>(rotateX);
     m_AngleY = static_cast<int>(rotateY);
     m_ScaleX = scaleX;
@@ -256,8 +256,7 @@ TimeWatermarkStickerSample::UpdateTransformMatrix(float rotateX, float rotateY, 
  * */
 void TimeWatermarkStickerSample::UpdateMVPMatrix(glm::mat4 &mvpMatrix, int angleX, int angleY,
                                     float scale, glm::vec3 transVec3, float ratio) const {
-    LOGD("TimeWatermarkStickerSample::UpdateMVPMatrix angleX = %d, angleY = %d, ratio = %f", angleX, angleY,
-         ratio)
+    LOGD("TimeWatermarkStickerSample::UpdateMVPMatrix angleX = %d, angleY = %d, ratio = %f", angleX, angleY,ratio)
     angleX = angleX % 360;
     angleY = angleY % 360;
 

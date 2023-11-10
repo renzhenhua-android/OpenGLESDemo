@@ -6,7 +6,7 @@
 #define OPENGLESDEMO_SCRATCHCARDSAMPLE_H
 
 #include <glm/gtc/matrix_transform.hpp>
-#include <GLBaseSample.h>
+#include <GLSampleBase.h>
 #include <vector>
 
 #define TRIANGLE_NUM  43
@@ -14,18 +14,18 @@
 
 using namespace glm;
 
-class ScratchCardSample : public GLBaseSample {
+class ScratchCardSample : public GLSampleBase {
 
 public:
     ScratchCardSample();
 
     virtual ~ScratchCardSample();
 
-    virtual void Create();
+    virtual void Init();
 
-    virtual void Draw();
+    virtual void Draw(int width_, int height_);
 
-    virtual void Shutdown();
+    virtual void Destroy();
 
     virtual void LoadImage(NativeImage *pImage);
 

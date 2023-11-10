@@ -5,7 +5,7 @@
 #include "MultiTexture.h"
 
 
-void MultiTexture::Create() {
+void MultiTexture::Init() {
 	GLUtils::printGLInfo();
 
 	// Main Program
@@ -41,7 +41,7 @@ void MultiTexture::Create() {
 	glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
 }
 
-void MultiTexture::Draw() {
+void MultiTexture::Draw(int width_, int height_) {
 	GLfloat vVertices[] = {
 			-0.5f,  0.5f, 0.0f,  // Position 0
 			0.0f,  0.0f,        // TexCoord 0
@@ -95,8 +95,8 @@ void MultiTexture::Draw() {
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_SHORT, indices);
 }
 
-void MultiTexture::Shutdown() {
-	GLBaseSample::Shutdown();
+void MultiTexture::Destroy() {
+	GLSampleBase::Destroy();
 	// Delete texture object
 	glDeleteTextures(1, &baseMapTexId);
 	glDeleteTextures(1, &lightMapTexId);

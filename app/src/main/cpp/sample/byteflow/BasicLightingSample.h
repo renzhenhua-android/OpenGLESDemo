@@ -6,19 +6,19 @@
 #define OPENGLESDEMO_BASICLIGHTINGSAMPLE_H
 
 #include <glm/gtc/matrix_transform.hpp>
-#include <GLBaseSample.h>
+#include <GLSampleBase.h>
 
-class BasicLightingSample : public GLBaseSample {
+class BasicLightingSample : public GLSampleBase {
 public:
     BasicLightingSample();
 
     virtual ~BasicLightingSample();
 
-    virtual void Create();
+    virtual void Init();
 
-    virtual void Draw();
+    virtual void Draw(int width_, int height_);
 
-    virtual void Shutdown();
+    virtual void Destroy();
 
     virtual void LoadImage(NativeImage *pImage);
 

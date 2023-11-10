@@ -10,7 +10,7 @@
 #include <cstdlib>
 #include "SimpleTextureCubeMap.h"
 
-void SimpleTextureCubeMap::Create() {
+void SimpleTextureCubeMap::Init() {
     GLUtils::printGLInfo();
 
     // 顶点着色器
@@ -40,7 +40,7 @@ void SimpleTextureCubeMap::Create() {
 }
 
 
-void SimpleTextureCubeMap::Draw() {
+void SimpleTextureCubeMap::Draw(int width_, int height_) {
 
     // Clear the color buffer
     glClear(GL_COLOR_BUFFER_BIT);
@@ -183,8 +183,8 @@ GLuint SimpleTextureCubeMap::CreateSimpleTextureCubemap() {
     return textureId;
 }
 
-void SimpleTextureCubeMap::Shutdown() {
-    GLBaseSample::Shutdown();
+void SimpleTextureCubeMap::Destroy() {
+    GLSampleBase::Destroy();
     if (vertices != nullptr) {
         free(vertices);
     }

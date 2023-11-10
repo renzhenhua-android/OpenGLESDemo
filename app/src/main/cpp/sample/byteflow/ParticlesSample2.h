@@ -6,7 +6,7 @@
 #define OPENGLESDEMO_PARTICLESSAMPLE2_H
 
 #include <glm/gtc/matrix_transform.hpp>
-#include <GLBaseSample.h>
+#include <GLSampleBase.h>
 
 #define MAX_PARTICLES 500
 
@@ -45,17 +45,17 @@ struct Particle {
 };
 
 
-class ParticlesSample2 : public GLBaseSample {
+class ParticlesSample2 : public GLSampleBase {
 public:
     ParticlesSample2();
 
     virtual ~ParticlesSample2();
 
-    virtual void Create();
+    virtual void Init();
 
-    virtual void Draw();
+    virtual void Draw(int width_, int height_);
 
-    virtual void Shutdown();
+    virtual void Destroy();
 
     virtual void LoadImage(NativeImage *pImage);
 
