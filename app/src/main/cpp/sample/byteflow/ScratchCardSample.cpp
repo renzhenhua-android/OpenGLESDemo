@@ -97,7 +97,7 @@ void ScratchCardSample::Init() {
     FRAGMENT_SHADER = GLUtils::openTextFile(
             "fragment/fragment_shader_texture_map.glsl");
 
-    m_ProgramObj = GLUtils::createProgram(&VERTEX_SHADER, &FRAGMENT_SHADER);
+    m_ProgramObj = GLUtils::CreateProgram(VERTEX_SHADER, FRAGMENT_SHADER);
     if (!m_ProgramObj) {
         LOGE("RotaryHeadSample::Init Create program fail")
         return;

@@ -18,7 +18,7 @@ void Noise3DRender::Init() {
             "fragment/fragment_shader_noise3d.glsl");
 
     // Set program handles
-    m_ProgramObj = GLUtils::createProgram(&VERTEX_SHADER, &FRAGMENT_SHADER);
+    m_ProgramObj = GLUtils::CreateProgram(VERTEX_SHADER, FRAGMENT_SHADER);
 
     if (!m_ProgramObj) {
         LOGD("Could not Create program")

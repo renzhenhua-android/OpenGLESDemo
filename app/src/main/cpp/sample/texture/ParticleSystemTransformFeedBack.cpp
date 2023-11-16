@@ -19,7 +19,7 @@ void ParticleSystemTransformFeedBack::Init() {
     const char *fragment2 = GLUtils::openTextFile(
             "fragment/fragment_shader_particlesystem_transform_feedback2.glsl");
     // Load the shaders and get a linked program object
-    drawProgramObject = GLUtils::createProgram(&vertex2, &fragment2);
+    drawProgramObject = GLUtils::CreateProgram(vertex2, fragment2);
 
     // Get the uniform locations
     drawTimeLoc = glGetUniformLocation ( drawProgramObject, "u_time" );
@@ -77,7 +77,7 @@ void ParticleSystemTransformFeedBack::initEmitParticles() {
             "fragment/fragment_shader_particlesystem_transform_feedback.glsl");
 
     // Set program handles
-    emitProgramObject = GLUtils::createProgram(&vertex, &fragment);
+    emitProgramObject = GLUtils::CreateProgram(vertex, fragment);
 
     if (!emitProgramObject) {
         LOGD("Could not Create program")

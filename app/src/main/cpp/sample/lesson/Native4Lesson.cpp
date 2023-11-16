@@ -51,7 +51,7 @@ void Native4Lesson::Init() {
     FRAGMENT_SHADER = GLUtils::openTextFile("fragment/fragment_shader_lesson_4.glsl");
 
     // Set program handles
-    mPerVertexProgramHandle = GLUtils::createProgram(&VERTEX_SHADER, &FRAGMENT_SHADER);
+    mPerVertexProgramHandle = GLUtils::CreateProgram(VERTEX_SHADER, FRAGMENT_SHADER);
     if (!mPerVertexProgramHandle) {
         LOGD("Could not Create program")
         return;
@@ -62,8 +62,8 @@ void Native4Lesson::Init() {
     const char *POINT_FRAGMENT_SHADER_CODE = GLUtils::openTextFile(
             "fragment/fragment_shader_lesson_point.glsl");
     // Set Point program handle
-    mPointProgramHandle = GLUtils::createProgram(&POINT_VERTEX_SHADER_CODE,
-                                                 &POINT_FRAGMENT_SHADER_CODE);
+    mPointProgramHandle = GLUtils::CreateProgram(POINT_VERTEX_SHADER_CODE,
+                                                 POINT_FRAGMENT_SHADER_CODE);
 
     mTextureDataHandle = GLUtils::loadTexture("texture/bumpy_bricks_public_domain.jpg");
 

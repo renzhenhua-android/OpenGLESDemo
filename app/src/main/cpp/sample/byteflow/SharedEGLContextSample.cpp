@@ -86,13 +86,13 @@ void SharedEGLContextSample::Init() {
     FRAGMENT_SHADER = GLUtils::openTextFile(
             "fragment/fragment_shader_texture_map.glsl");
     // 编译链接用于普通渲染的着色器程序
-    m_ProgramObj = GLUtils::createProgram(&VERTEX_SHADER, &FRAGMENT_SHADER);
+    m_ProgramObj = GLUtils::CreateProgram(VERTEX_SHADER, FRAGMENT_SHADER);
 
     // 用于离屏渲染的片段着色器脚本，作为另一个线程的着色器程序
     const char *fragmentRgb2yuv = GLUtils::openTextFile(
             "fragment/fragment_shader_shared_egl_context.glsl");
     // 编译链接用于离屏渲染的着色器程序
-    m_FboProgramObj = GLUtils::createProgram(&VERTEX_SHADER, &fragmentRgb2yuv);
+    m_FboProgramObj = GLUtils::CreateProgram(VERTEX_SHADER, fragmentRgb2yuv);
 
     if (m_ProgramObj == GL_NONE || m_FboProgramObj == GL_NONE) {
         LOGE("RGB2YUVSample::Init Create program fail")

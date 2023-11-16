@@ -14,7 +14,7 @@ void SimpleTexture2D::Init() {
     FRAGMENT_SHADER = GLUtils::openTextFile(
             "fragment/fragment_shader_simple_texture_2d.glsl");
 
-    m_ProgramObj = GLUtils::createProgram(&VERTEX_SHADER, &FRAGMENT_SHADER);
+    m_ProgramObj = GLUtils::CreateProgram(VERTEX_SHADER, FRAGMENT_SHADER);
 
     if (!m_ProgramObj) {
         LOGD("Could not Create program")

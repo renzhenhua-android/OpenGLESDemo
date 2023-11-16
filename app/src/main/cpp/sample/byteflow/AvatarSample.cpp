@@ -64,7 +64,7 @@ void AvatarSample::Init() {
     // 片段着色器
     FRAGMENT_SHADER = GLUtils::openTextFile(
             "fragment/fragment_shader_avatar.glsl");
-    m_ProgramObj = GLUtils::createProgram(&VERTEX_SHADER, &FRAGMENT_SHADER);
+    m_ProgramObj = GLUtils::CreateProgram(VERTEX_SHADER, FRAGMENT_SHADER);
 
     if (m_ProgramObj == GL_NONE) {
         LOGE("BasicLightingSample::Init m_ProgramObj == GL_NONE")
@@ -74,7 +74,7 @@ void AvatarSample::Init() {
     // 片段着色器
     const char *fBlurShader = GLUtils::openTextFile(
             "fragment/fragment_shader_avatar_blur.glsl");
-    m_BlurProgramObj = GLUtils::createProgram(&VERTEX_SHADER, &fBlurShader);
+    m_BlurProgramObj = GLUtils::CreateProgram(VERTEX_SHADER, fBlurShader);
     if (m_BlurProgramObj == GL_NONE) {
         LOGE("BasicLightingSample::Init m_ProgramObj == GL_NONE")
         return;

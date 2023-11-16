@@ -61,7 +61,7 @@ void MRTSample::Init() {
     // 片段着色器脚本
     const char *FRAGMENT_SHADER2 = GLUtils::openTextFile(
             "fragment/fragment_shader_mrt2.glsl");
-    m_MRTProgramObj = GLUtils::createProgram(&VERTEX_SHADER, &FRAGMENT_SHADER2);
+    m_MRTProgramObj = GLUtils::CreateProgram(VERTEX_SHADER, FRAGMENT_SHADER2);
     if (!m_MRTProgramObj) {
         LOGE("RotaryHeadSample::Init Create program fail")
         return;
@@ -74,7 +74,7 @@ void MRTSample::Init() {
     FRAGMENT_SHADER = GLUtils::openTextFile(
             "fragment/fragment_shader_mrt3.glsl");
 
-    m_ProgramObj = GLUtils::createProgram(&VERTEX_SHADER, &FRAGMENT_SHADER);
+    m_ProgramObj = GLUtils::CreateProgram(VERTEX_SHADER, FRAGMENT_SHADER);
     if (!m_ProgramObj) {
         LOGE("RotaryHeadSample::Init Create program fail")
         return;

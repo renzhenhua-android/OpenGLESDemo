@@ -14,7 +14,7 @@ void Native6Lesson::Init() {
     FRAGMENT_SHADER = GLUtils::openTextFile("fragment/fragment_shader_lesson_6.glsl");
 
     // Set program handles
-    m_ProgramObj = GLUtils::createProgram(&VERTEX_SHADER, &FRAGMENT_SHADER);
+    m_ProgramObj = GLUtils::CreateProgram(VERTEX_SHADER, FRAGMENT_SHADER);
     if (!m_ProgramObj) {
         LOGD("Could not Create program")
         return;
@@ -25,8 +25,8 @@ void Native6Lesson::Init() {
     const char *POINT_FRAGMENT_SHADER_CODE = GLUtils::openTextFile(
             "fragment/fragment_shader_lesson_point.glsl");
     // Set Point program handle
-    mPointProgramHandle = GLUtils::createProgram(&POINT_VERTEX_SHADER_CODE,
-                                                 &POINT_FRAGMENT_SHADER_CODE);
+    mPointProgramHandle = GLUtils::CreateProgram(POINT_VERTEX_SHADER_CODE,
+                                                 POINT_FRAGMENT_SHADER_CODE);
     if (!mPointProgramHandle) {
         LOGD("Could not Create program")
         return;

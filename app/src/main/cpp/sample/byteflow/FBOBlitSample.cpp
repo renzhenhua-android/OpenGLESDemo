@@ -63,7 +63,7 @@ void FBOBlitSample::Init() {
     FRAGMENT_SHADER = GLUtils::openTextFile(
             "fragment/fragment_shader_mrt2.glsl");
 
-    m_ProgramObj = GLUtils::createProgram(&VERTEX_SHADER, &FRAGMENT_SHADER);
+    m_ProgramObj = GLUtils::CreateProgram(VERTEX_SHADER, FRAGMENT_SHADER);
     if (!m_ProgramObj) {
         LOGE("RotaryHeadSample::Init Create program fail")
         return;

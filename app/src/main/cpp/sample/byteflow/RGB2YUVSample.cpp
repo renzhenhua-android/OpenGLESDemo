@@ -64,11 +64,11 @@ void RGB2YUVSample::Init() {
     FRAGMENT_SHADER = GLUtils::openTextFile(
             "fragment/fragment_shader_texture_map.glsl");
 
-    m_ProgramObj = GLUtils::createProgram(&VERTEX_SHADER, &FRAGMENT_SHADER);
+    m_ProgramObj = GLUtils::CreateProgram(VERTEX_SHADER, FRAGMENT_SHADER);
 
     const char *fragmentRgb2yuv = GLUtils::openTextFile(
             "fragment/fragment_shader_rgb2yuv.glsl");
-    m_FboProgramObj = GLUtils::createProgram(&VERTEX_SHADER, &fragmentRgb2yuv);
+    m_FboProgramObj = GLUtils::CreateProgram(VERTEX_SHADER, fragmentRgb2yuv);
 
     if (m_ProgramObj == GL_NONE || m_FboProgramObj == GL_NONE) {
         LOGE("RGB2YUVSample::Init Create program fail")

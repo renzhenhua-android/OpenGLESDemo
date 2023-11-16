@@ -57,7 +57,7 @@ void VisualizeAudioSample::Init() {
     FRAGMENT_SHADER = GLUtils::openTextFile(
             "fragment/fragment_shader_visualize_audio.glsl");
 
-    m_ProgramObj = GLUtils::createProgram(&VERTEX_SHADER, &FRAGMENT_SHADER);
+    m_ProgramObj = GLUtils::CreateProgram(VERTEX_SHADER, FRAGMENT_SHADER);
     if (!m_ProgramObj) {
         LOGE("BigEyesSample::Init Create program fail")
         return;

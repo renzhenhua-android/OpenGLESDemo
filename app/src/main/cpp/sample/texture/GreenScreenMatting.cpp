@@ -82,7 +82,7 @@ void GreenScreenMatting::Init() {
     FRAGMENT_SHADER = GLUtils::openTextFile(
             "fragment/fragment_shader_green_screen_matting2.glsl");
 
-    m_ProgramObj = GLUtils::createProgram(&VERTEX_SHADER, &FRAGMENT_SHADER);
+    m_ProgramObj = GLUtils::CreateProgram(VERTEX_SHADER, FRAGMENT_SHADER);
     if (m_ProgramObj == GL_NONE) {
         LOGE("GreenScreenMatting::Init m_ProgramObj == GL_NONE")
         return;

@@ -109,11 +109,11 @@ void StencilTestingSample::Init() {
     // 片段着色器
     FRAGMENT_SHADER = GLUtils::openTextFile(
             "fragment/fragment_shader_multi_light.glsl");
-    m_ProgramObj = GLUtils::createProgram(&VERTEX_SHADER, &FRAGMENT_SHADER);
+    m_ProgramObj = GLUtils::CreateProgram(VERTEX_SHADER, FRAGMENT_SHADER);
 
     const char *fFrameShaderStr = GLUtils::openTextFile(
             "fragment/fragment_shader_hello_triangle.glsl");
-    m_FrameProgramObj = GLUtils::createProgram(&VERTEX_SHADER, &fFrameShaderStr);
+    m_FrameProgramObj = GLUtils::CreateProgram(VERTEX_SHADER, fFrameShaderStr);
 
     if (m_ProgramObj == GL_NONE || m_FrameProgramObj == GL_NONE) {
         LOGE("StencilTestingSample::Create()  m_ProgramObj == GL_NONE || m_FrameProgramObj == GL_NONE")

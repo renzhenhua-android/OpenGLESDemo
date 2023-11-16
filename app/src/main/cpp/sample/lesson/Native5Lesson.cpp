@@ -31,7 +31,7 @@ void Native5Lesson::Init() {
     FRAGMENT_SHADER = GLUtils::openTextFile("fragment/fragment_shader_lesson_5.glsl");
 
     // Set program handles
-    m_ProgramObj = GLUtils::createProgram(&VERTEX_SHADER, &FRAGMENT_SHADER);
+    m_ProgramObj = GLUtils::CreateProgram(VERTEX_SHADER, FRAGMENT_SHADER);
     if (!m_ProgramObj) {
         LOGD("Could not Create program")
         return;

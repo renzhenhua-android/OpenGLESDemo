@@ -74,7 +74,7 @@ void BaseShaderToySimpleSample::Init() {
     // 片段着色器
     FRAGMENT_SHADER = GLUtils::openTextFile(mFragmentShaderPath);
 
-    m_ProgramObj = GLUtils::createProgram(&VERTEX_SHADER, &FRAGMENT_SHADER);
+    m_ProgramObj = GLUtils::CreateProgram(VERTEX_SHADER, FRAGMENT_SHADER);
     if (m_ProgramObj == GL_NONE) {
         LOGE("CoordSystemSample::Init m_ProgramObj == GL_NONE")
         return;

@@ -97,7 +97,7 @@ void Native7Lesson::Create() {
             "fragment/lesson_seven_fragment_shader.glsl");
 
     // Set program handles
-    mProgramHandle = GLUtils::createProgram(&vertex, &fragment);
+    mProgramHandle = GLUtils::CreateProgram(vertex, fragment);
     if (!mProgramHandle) {
         LOGD("Could not Create program")
         return;

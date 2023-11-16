@@ -26,8 +26,8 @@ void Shadows::Init() {
     const char *fSceneShaderStr = GLUtils::openTextFile(
             "fragment/fragment_shader_shadows_scene.glsl");
 
-    shadowMapProgramObject = GLUtils::createProgram(&vShadowMapShaderStr, &fShadowMapShaderStr);
-    sceneProgramObject = GLUtils::createProgram(&vSceneShaderStr, &fSceneShaderStr);
+    shadowMapProgramObject = GLUtils::CreateProgram(vShadowMapShaderStr, fShadowMapShaderStr);
+    sceneProgramObject = GLUtils::CreateProgram(vSceneShaderStr, fSceneShaderStr);
 
     if (!shadowMapProgramObject || !sceneProgramObject) {
         LOGD("Could not Create program")

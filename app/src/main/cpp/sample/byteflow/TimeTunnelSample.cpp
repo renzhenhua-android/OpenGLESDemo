@@ -64,7 +64,7 @@ void TimeTunnelSample::Init() {
     // 片段着色器
     FRAGMENT_SHADER = GLUtils::openTextFile(
             "fragment/fragment_shader_texture_map.glsl");
-    m_ProgramObj = GLUtils::createProgram(&VERTEX_SHADER, &FRAGMENT_SHADER);
+    m_ProgramObj = GLUtils::CreateProgram(VERTEX_SHADER, FRAGMENT_SHADER);
 
     // 用于离屏渲染的顶点着色器脚本，不使用变换矩阵
     const char* vFboShaderStr = GLUtils::openTextFile(
@@ -72,7 +72,7 @@ void TimeTunnelSample::Init() {
     const char* fFboShaderStr = GLUtils::openTextFile(
             "fragment/fragment_shader_time_tunnel.glsl");
     // 编译链接用于离屏渲染的着色器程序
-    m_FboProgramObj = GLUtils::createProgram(&vFboShaderStr, &fFboShaderStr);
+    m_FboProgramObj = GLUtils::CreateProgram(vFboShaderStr, fFboShaderStr);
 
     if (m_ProgramObj == GL_NONE || m_FboProgramObj == GL_NONE)
     {

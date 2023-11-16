@@ -50,7 +50,7 @@ void SkyBoxSample::Init() {
     // 片段着色器
     FRAGMENT_SHADER = GLUtils::openTextFile(
             "fragment/fragment_shader_skybox.glsl");
-    m_ProgramObj = GLUtils::createProgram(&VERTEX_SHADER, &FRAGMENT_SHADER);
+    m_ProgramObj = GLUtils::CreateProgram(VERTEX_SHADER, FRAGMENT_SHADER);
     if (m_ProgramObj == GL_NONE) {
         LOGE("SkyBoxSample::Create()  m_ProgramObj == GL_NONE")
         return;
@@ -63,7 +63,7 @@ void SkyBoxSample::Init() {
             "vertex/vertex_shader_skybox_cube.glsl");
     const char *fCubeShaderStr = GLUtils::openTextFile(
             "fragment/fragment_shader_skybox_cube.glsl");
-    m_CubeProgramObj = GLUtils::createProgram(&vCubeShaderStr, &fCubeShaderStr);
+    m_CubeProgramObj = GLUtils::CreateProgram(vCubeShaderStr, fCubeShaderStr);
     if (m_CubeProgramObj == GL_NONE) {
         LOGE("SkyBoxSample::Create()  m_CubeProgramObj == GL_NONE")
         return;

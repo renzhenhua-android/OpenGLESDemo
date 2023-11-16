@@ -11,7 +11,7 @@ void NativeTriangleMapBuffers::Init() {
     // 片段着色器
     FRAGMENT_SHADER = GLUtils::openTextFile(
             "fragment/fragment_shader_hello_triangle2.glsl");
-    m_ProgramObj = GLUtils::createProgram(&VERTEX_SHADER, &FRAGMENT_SHADER);
+    m_ProgramObj = GLUtils::CreateProgram(VERTEX_SHADER, FRAGMENT_SHADER);
 
     if (!m_ProgramObj) {
         LOGD("Could not Create program")

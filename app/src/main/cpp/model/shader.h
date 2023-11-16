@@ -20,7 +20,7 @@ public:
     {
         DEBUG_LOGCATE()
         // 创建着色器程序
-        ID = GLUtils::createProgram(&vertexStr, &fragmentStr);
+        ID = GLUtils::CreateProgram(vertexStr, fragmentStr);
     }
 
     ~Shader()

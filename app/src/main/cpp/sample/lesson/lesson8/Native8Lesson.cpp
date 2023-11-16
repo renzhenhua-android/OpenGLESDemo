@@ -98,7 +98,7 @@ void Native8Lesson::create() {
     const char *fragment = GLUtils::openTextFile("fragment/per_pixel_fragment_shader_no_tex.glsl");
 
     // Set the program.
-    program = GLUtils::createProgram(&vertex, &fragment);
+    program = GLUtils::CreateProgram(vertex, fragment);
     if (!program) {
         LOGD("Could not Create program")
         return;

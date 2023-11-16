@@ -175,7 +175,7 @@ void EGLRender::Init(JNIEnv *env, jobject assetManager) {
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glBindTexture(GL_TEXTURE_2D, GL_NONE);
 
-    m_ProgramObj = GLUtils::createProgram(&vertexShader, &m_fShaderStrs[m_ShaderIndex]);
+    m_ProgramObj = GLUtils::CreateProgram(vertexShader, m_fShaderStrs[m_ShaderIndex]);
     if (!m_ProgramObj) {
         GLUtils::checkGlError("Create Program");
         LOGD("EGLRender::Init Could not create program.")
@@ -410,7 +410,7 @@ void EGLRender::SetFragmentShaderType(int paramType, int fShaderType) {
                 m_ProgramObj = GL_NONE;
             }
 
-            m_ProgramObj = GLUtils::createProgram(&vertexShader, &m_fShaderStrs[m_ShaderIndex]);
+            m_ProgramObj = GLUtils::CreateProgram(vertexShader, m_fShaderStrs[m_ShaderIndex]);
             if (!m_ProgramObj) {
                 GLUtils::checkGlError("Create Program");
                 LOGD("EGLRender::SetFragmentShaderType Could not create program.")

@@ -47,7 +47,7 @@ void AirHockeySample::Init() {
     FRAGMENT_SHADER = GLUtils::openTextFile(
             "fragment/fragment_shader_air_hockey_table.glsl");
 
-    m_ProgramObj = GLUtils::createProgram(&VERTEX_SHADER, &FRAGMENT_SHADER);
+    m_ProgramObj = GLUtils::CreateProgram(VERTEX_SHADER, FRAGMENT_SHADER);
     if (!m_ProgramObj) {
         LOGD("Could not Create m_ProgramObj")
         return;
@@ -95,7 +95,7 @@ void AirHockeySample::Init() {
     // 片段着色器
     const char *MALLET_FRAGMENT_SHADER = GLUtils::openTextFile(
             "fragment/fragment_shader_air_hockey_mallet.glsl");
-    m_MalletProgramObj = GLUtils::createProgram(&MALLET_VERTEX_SHADER, &MALLET_FRAGMENT_SHADER);
+    m_MalletProgramObj = GLUtils::CreateProgram(MALLET_VERTEX_SHADER, MALLET_FRAGMENT_SHADER);
     if (!m_MalletProgramObj) {
         LOGD("Could not Create m_MalletProgramObj")
         return;

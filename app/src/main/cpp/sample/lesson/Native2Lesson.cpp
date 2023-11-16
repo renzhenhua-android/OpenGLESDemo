@@ -52,7 +52,7 @@ void Native2Lesson::Init() {
     // 片段着色器
     FRAGMENT_SHADER = GLUtils::openTextFile(
             "fragment/fragment_shader_lesson_2.glsl");
-    mPerVertexProgramHandle = GLUtils::createProgram(&VERTEX_SHADER, &FRAGMENT_SHADER);
+    mPerVertexProgramHandle = GLUtils::CreateProgram(VERTEX_SHADER, FRAGMENT_SHADER);
     if (!mPerVertexProgramHandle) {
         LOGD("Could not Create program")
         return;
@@ -63,8 +63,8 @@ void Native2Lesson::Init() {
     const char *POINT_FRAGMENT_SHADER_CODE = GLUtils::openTextFile(
             "fragment/fragment_shader_lesson_point.glsl");
     // Set Point program handle
-    mPointProgramHandle = GLUtils::createProgram(&POINT_VERTEX_SHADER_CODE,
-                                                 &POINT_FRAGMENT_SHADER_CODE);
+    mPointProgramHandle = GLUtils::CreateProgram(POINT_VERTEX_SHADER_CODE,
+                                                 POINT_FRAGMENT_SHADER_CODE);
     if (!mPointProgramHandle) {
         LOGD("Could not Create program")
         return;

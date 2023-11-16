@@ -69,9 +69,9 @@ void FBOSample::Init() {
     const char * m_FboFragmentShader =  GLUtils::openTextFile(
             "fragment/fragment_shader_texture_fbo.glsl");
 
-    m_ProgramObj = GLUtils::createProgram(&VERTEX_SHADER, &FRAGMENT_SHADER);
+    m_ProgramObj = GLUtils::CreateProgram(VERTEX_SHADER, FRAGMENT_SHADER);
     // 编译链接用于离屏渲染的着色器程序
-    m_FboProgramObj =GLUtils::createProgram(&VERTEX_SHADER, &m_FboFragmentShader);
+    m_FboProgramObj =GLUtils::CreateProgram(VERTEX_SHADER, m_FboFragmentShader);
 
     if (m_ProgramObj == GL_NONE || m_FboProgramObj == GL_NONE)
     {

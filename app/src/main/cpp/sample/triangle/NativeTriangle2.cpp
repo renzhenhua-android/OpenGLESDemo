@@ -2,6 +2,11 @@
 
 // 可以参考这篇讲解： https://learnopengl-cn.github.io/01%20Getting%20started/04%20Hello%20Triangle/
 
+#define VERTEX_POS_INDX       0
+#define VERTEX_COLOR_INDX     1
+
+#define VERTEX_POS_SIZE       3 // x, y and z
+#define VERTEX_COLOR_SIZE     4 // r, g, b, and a
 
 // 我们在OpenGL中指定的所有坐标都是3D坐标（x、y和z）
 // 由于我们希望渲染一个三角形，我们一共要指定三个顶点，每个顶点都有一个3D位置。
@@ -40,7 +45,7 @@ void NativeTriangle2::Init() {
     // 片段着色器
     FRAGMENT_SHADER = GLUtils::openTextFile(
             "fragment/fragment_shader_hello_triangle2.glsl");
-    m_ProgramObj = GLUtils::createProgram(&VERTEX_SHADER, &FRAGMENT_SHADER);
+    m_ProgramObj = GLUtils::CreateProgram(VERTEX_SHADER, FRAGMENT_SHADER);
     if (!m_ProgramObj) {
         LOGD("Could not Create program")
         return;

@@ -16,7 +16,7 @@ void MultiTexture::Init() {
 	FRAGMENT_SHADER = GLUtils::openTextFile(
 			"fragment/fragment_shader_multi_texture.glsl");
 
-    m_ProgramObj = GLUtils::createProgram(&VERTEX_SHADER, &FRAGMENT_SHADER);
+    m_ProgramObj = GLUtils::CreateProgram(VERTEX_SHADER, FRAGMENT_SHADER);
 
 	if (!m_ProgramObj) {
 		LOGD("Could not Create program")

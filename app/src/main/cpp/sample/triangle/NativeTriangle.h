@@ -4,7 +4,6 @@
 
 class NativeTriangle : public GLSampleBase {
 
-#define VERTEX_POS_INDX       0
 
 public:
     NativeTriangle() = default;

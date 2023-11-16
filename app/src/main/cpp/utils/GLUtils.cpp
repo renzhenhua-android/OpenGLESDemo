@@ -14,7 +14,7 @@ typedef struct
 //  使用该属性对struct 或者union 类型进行定义，设定其类型的每一个变量的内存约束。
 //  就是告诉编译器取消结构在编译过程中的优化对齐（使用1字节对齐）,按照实际占用字节数进行对齐，是GCC特有的语法。
 //  这个功能是跟操作系统没关系，跟编译器有关，gcc编译器不是紧凑模式的
-    __attribute__ (( packed )) {
+        __attribute__ (( packed )) {
     unsigned char IdSize,
             MapType,
             ImageType;
@@ -136,16 +136,16 @@ static GLuint loadShader(GLenum shaderType, const char** source) {
     }
 }
 
-GLuint GLUtils::createProgram(const char** vertexSource, const char** fragmentSource) {
+GLuint GLUtils::CreateProgram(const char* vertexSource, const char* fragmentSource) {
     GLuint program = 0;
-    FUN_BEGIN_TIME("GLUtils::createProgram")
+    FUN_BEGIN_TIME("GLUtils::CreateProgram")
         // Load the Vertex shader
-        GLuint vertexShader = loadShader(GL_VERTEX_SHADER, vertexSource);
+        GLuint vertexShader = loadShader(GL_VERTEX_SHADER, &vertexSource);
         if (vertexShader == 0) {
             return 0;
         }
         // Load the Fragment shader
-        GLuint fragmentShader = loadShader(GL_FRAGMENT_SHADER, fragmentSource);
+        GLuint fragmentShader = loadShader(GL_FRAGMENT_SHADER, &fragmentSource);
         if (fragmentShader == 0) {
             return 0;
         }
@@ -178,7 +178,7 @@ GLuint GLUtils::createProgram(const char** vertexSource, const char** fragmentSo
                 if (infoLog) {
                     //获取信息
                     glGetProgramInfoLog(program, infoLen, nullptr, infoLog);
-                    LOGE("GLUtils::createProgram error linking program:\n%s\n", infoLog)
+                    LOGE("GLUtils::CreateProgram error linking program:\n%s\n", infoLog)
                     free(infoLog);
                 }
             }
@@ -189,7 +189,7 @@ GLuint GLUtils::createProgram(const char** vertexSource, const char** fragmentSo
         // Free up no longer needed shader resources
         glDeleteShader(vertexShader);
         glDeleteShader(fragmentShader);
-    FUN_END_TIME("GLUtils::createProgram")
+    FUN_END_TIME("GLUtils::CreateProgram")
     return program;
 }
 

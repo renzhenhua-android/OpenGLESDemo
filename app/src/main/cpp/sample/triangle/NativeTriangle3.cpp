@@ -2,6 +2,11 @@
 
 // 可以参考这篇讲解： https://learnopengl-cn.github.io/01%20Getting%20started/04%20Hello%20Triangle/
 
+#define VERTEX_POS_SIZE       3 // x, y and z
+#define VERTEX_COLOR_SIZE     4 // r, g, b, and a
+
+#define VERTEX_POS_INDX       0
+#define VERTEX_COLOR_INDX     1
 // 3 vertices, with (x,y,z) ,(r, g, b, a) per-vertex
 static GLfloat vertexPos[3 * VERTEX_POS_SIZE] =
         {
@@ -43,7 +48,7 @@ void NativeTriangle3::Init() {
     // 片段着色器
     FRAGMENT_SHADER = GLUtils::openTextFile(
             "fragment/fragment_shader_hello_triangle2.glsl");
-    m_ProgramObj = GLUtils::createProgram(&VERTEX_SHADER, &FRAGMENT_SHADER);
+    m_ProgramObj = GLUtils::CreateProgram(VERTEX_SHADER, FRAGMENT_SHADER);
 
     if (!m_ProgramObj) {
         LOGD("Could not Create program")
@@ -81,7 +86,7 @@ void NativeTriangle3::Draw(int width_, int height_) {
 
         // OpenGL有很多缓冲对象类型，顶点缓冲对象的缓冲类型是GL_ARRAY_BUFFER。
         // OpenGL允许我们同时绑定多个缓冲，只要它们是不同的缓冲类型。
-        // 我们可以使用glBindBuffer函数把新创建的缓冲绑定到GL_ARRAY_BUFFER目标上
+        // 我们可以使用glBindBuffer函数把新创建的缓冲绑定到 GL_ARRAY_BUFFER 目标上
         // 从这一刻起，我们使用的任何（在GL_ARRAY_BUFFER目标上的）缓冲调用都会用来配置当前绑定的缓冲(VBO)。
 
         // VBO 0 是 缓冲 顶点
@@ -177,6 +182,40 @@ void NativeTriangle3::Draw(int width_, int height_) {
     glDisableVertexAttribArray(VERTEX_POS_INDX);
     glDisableVertexAttribArray(VERTEX_COLOR_INDX);
 
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+}
+
+
+void NativeTriangle3::Draw2(int width_, int height_) {
+    glClear(GL_COLOR_BUFFER_BIT);
+    glUseProgram(m_ProgramObj);
+    if (vboIds[0] == 0 && vboIds[1] == 0 && vboIds[2] == 0) {
+        // 使用glGenBuffers函数生成3个VBO对象
+        glGenBuffers(3, vboIds);
+        // VBO 0 是 缓冲 顶点
+        // 复制顶点数组到缓冲中供OpenGL使用
+        glBindBuffer(GL_ARRAY_BUFFER, vboIds[0]);
+        glBufferData(GL_ARRAY_BUFFER, vtxStrides[0] * 3, vtxBuf[0], GL_STATIC_DRAW);
+        // VBO 1 是 缓冲 颜色
+        glBindBuffer(GL_ARRAY_BUFFER, vboIds[1]);
+        glBufferData(GL_ARRAY_BUFFER, vtxStrides[1] * 3, vtxBuf[1], GL_STATIC_DRAW);
+        // VBO 2 实际上是 EBO， 缓冲 indices
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vboIds[2]);
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(GLushort) * 4, indices, GL_STATIC_DRAW);
+    }
+    glBindBuffer(GL_ARRAY_BUFFER, vboIds[0]);
+    glEnableVertexAttribArray(VERTEX_POS_INDX);
+    //设置顶点属性指针
+    glVertexAttribPointer(VERTEX_POS_INDX, VERTEX_POS_SIZE, GL_FLOAT,GL_FALSE, vtxStrides[0], nullptr);
+    glBindBuffer(GL_ARRAY_BUFFER, vboIds[1]);
+    glEnableVertexAttribArray(VERTEX_COLOR_INDX);
+    glVertexAttribPointer(VERTEX_COLOR_INDX, VERTEX_COLOR_SIZE, GL_FLOAT,GL_FALSE, vtxStrides[1], nullptr);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vboIds[2]);
+
+    glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_SHORT, nullptr);
+    glDisableVertexAttribArray(VERTEX_POS_INDX);
+    glDisableVertexAttribArray(VERTEX_COLOR_INDX);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
